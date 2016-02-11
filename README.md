@@ -12,3 +12,8 @@ Name:     Ryan Brown
 DawgTag:  850550941
 Email:    ryanbrown@siu.edu
 Team:     RARE
+
+Name:     Reham Almutairi
+DawgTag:  853539942
+Email:    reham.mutlaq@siu.edu
+Team:     RARE
