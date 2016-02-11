@@ -9,6 +9,6 @@ E-mail:   allison.campbell@siu.edu
 Team:     RARE
 
 Name:     Ryan Brown
-DawgTag:  580550941
+DawgTag:  850550941
 Email:    ryanbrown@siu.edu
 Team:     RARE
