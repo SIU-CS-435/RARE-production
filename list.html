@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!--link rel="icon" href="/favicon.ico"-->
+
+    <title>ToDoTaskList</title>
+
+    <!-- CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="justified-nav.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+  
+	<div class="container" id="main_container">
+		<div class="masthead">
+			<h3 class="text-muted">Manage Lists</h3>
+		</div>
+		<!-- Button trigger modal -->
+		<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModalNorm">
+			+ Add a List
+		</button>
+		<!-- Modal -->
+		<div class="modal fade" id="myModalNorm" tabindex="-1" role="dialog" 
+			 aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<!-- Modal Header -->
+					<div class="modal-header">
+						<button type="button" class="close" 
+						   data-dismiss="modal">
+							   <span aria-hidden="true">&times;</span>
+							   <span class="sr-only">Close</span>
+						</button>
+						<h4 class="modal-title" id="myModalLabel">
+							Add a New List
+						</h4>
+					</div>
+					<!-- Modal Body -->
+					<div class="modal-body">
+						<form role="form">
+						  <div class="form-group">
+							  <input type="text" class="form-control"
+							  id="listTitle" placeholder="Enter New List Title Here"/>
+						  </div>
+						  <button type="button" onclick="addList()" class="btn btn-default">Create</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="listSection">
+		</div>
+        <footer class="footer">
+        <p>&copy; 2016 RARE</p>
+		</footer>
+	</div>
+    <!-- Scripts -->
+    <script src="js/ie10-viewport-bug-workaround.js"></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+	
+	<script src="js/list.js"></script
+
+    </body>
+</html>
