@@ -1,0 +1,52 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <link rel="icon" href="/favicon.ico" />
+
+    <title>ToDoTaskList</title>
+
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+    
+    <!-- CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/ie10-viewport-bug-workaround.css" rel="stylesheet" />
+    <link href="justified-nav.css" rel="stylesheet" />
+    
+    <script src="js/ie-emulation-modes-warning.js"></script>
+</head>
+<body>
+    <form id="form1" runat="server">
+
+    <div class="container">
+        <div class="masthead">
+        <nav>
+          <ul class="nav nav-justified">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="https://github.com/SIU-CS-435/RARE-production">About</a></li>
+          </ul>
+        </nav>
+      </div>
+        <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+    </div>
+    
+    </form>
+   
+    <!-- Scripts -->
+    <script src="js/ie10-viewport-bug-workaround.js"></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/validator.js"></script>
+</body>
+</html>
