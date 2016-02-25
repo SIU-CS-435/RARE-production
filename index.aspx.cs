@@ -12,7 +12,6 @@ public partial class _Default : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        // Clear the last session for adding additional entries
-        Session.Clear();
+        
     }
 }

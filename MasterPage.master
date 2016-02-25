@@ -25,26 +25,26 @@
     <script src="js/ie-emulation-modes-warning.js"></script>
 </head>
 <body>
-    <form id="form1" runat="server">
-
     <div class="container">
         <div class="masthead">
         <nav>
           <ul class="nav nav-justified">
+            <asp:ContentPlaceHolder id="NavBarElements" runat="server">
             <li class="active"><a href="#">Home</a></li>
             <li><a href="https://github.com/SIU-CS-435/RARE-production">About</a></li>
+            </asp:ContentPlaceHolder>
           </ul>
         </nav>
       </div>
-        <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
-        
-        </asp:ContentPlaceHolder>
+      <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+      </asp:ContentPlaceHolder>
     </div>
+
     <!-- Site Footer -->
     <footer class="footer">
-        <p>&copy; 2016 RARE</p>
-      </footer>
-    </form>
+        <p>&nbsp&nbsp &copy; 2016 RARE</p>
+    </footer>
+
     <!-- Scripts -->
     <script src="js/ie10-viewport-bug-workaround.js"></script>
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>

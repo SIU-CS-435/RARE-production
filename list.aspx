@@ -1,8 +1,13 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="list.aspx.cs" Inherits="_Default" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
-    <script src="js/list.js"></script>
 </asp:Content>
+
+<asp:Content ID="NavBarElements" ContentPlaceHolderID="NavBarElements" Runat="Server">
+    <li><a href="/index.aspx">Home</a></li>
+    <li><a href="https://github.com/SIU-CS-435/RARE-production">About</a></li>
+</asp:Content>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <div class="masthead">
 	    <h3 class="text-muted">Manage Lists</h3>
