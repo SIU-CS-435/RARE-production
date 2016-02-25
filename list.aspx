@@ -4,7 +4,7 @@
 </asp:Content>
 
 <asp:Content ID="NavBarElements" ContentPlaceHolderID="NavBarElements" Runat="Server">
-    <li><a href="/index.aspx">Home</a></li>
+    <li><a href="index.aspx">Home</a></li>
     <li><a href="https://github.com/SIU-CS-435/RARE-production">About</a></li>
 </asp:Content>
 
@@ -49,5 +49,6 @@
 	</div>
 	<div id="listSection">
 	</div>
+    <script src="js/list.js"></script>
 </asp:Content>
 
