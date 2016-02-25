@@ -40,9 +40,11 @@
         
         </asp:ContentPlaceHolder>
     </div>
-    
+    <!-- Site Footer -->
+    <footer class="footer">
+        <p>&copy; 2016 RARE</p>
+      </footer>
     </form>
-   
     <!-- Scripts -->
     <script src="js/ie10-viewport-bug-workaround.js"></script>
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
