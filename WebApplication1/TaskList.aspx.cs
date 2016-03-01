@@ -22,12 +22,13 @@ namespace WebApplication1
         {
             // Retrieves info from textboxes
             string insertCommand = "Insert into [dbo].[" + curUser + "] ([task], [priority], [progress], [end]) Values('TestTask', '0', '1', '50');";
-
+            /*
             SqlDataSource1.InsertCommand = insertCommand;
 
             // Upon successful insertion
             if (SqlDataSource1.Insert() == 1)
                 outputLabel.Text += "<br />" + Session.Contents[0] + ", your task has been added! <br />";
+        */    
         }
 
     }
