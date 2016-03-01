@@ -9,7 +9,19 @@
 	<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModalNorm">
 		+ Add a List
 	</button>
-	
+	<p>
+        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" HorizontalAlign="Center" AllowSorting="True">
+            <Columns>
+                <asp:BoundField DataField="task" HeaderText="Task" SortExpression="task" />
+                <asp:BoundField DataField="priority" HeaderText="Priority" SortExpression="priority" />
+                <asp:BoundField DataField="progress" HeaderText="Progress" SortExpression="progress" />
+                <asp:BoundField DataField="end" HeaderText="End" SortExpression="end" />
+            </Columns>
+            <HeaderStyle BackColor="#666666" />
+        </asp:GridView>
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand="SELECT [task], [priority], [progress], [end] FROM [d498c91f-2784-4943-b30c-a0db86dfe897]"></asp:SqlDataSource>
+    </p>
+
     <!-- Modal -->
 	<div class="modal fade" id="myModalNorm" tabindex="-1" role="dialog" 
 		 aria-labelledby="myModalLabel" aria-hidden="true">
@@ -17,7 +29,7 @@
 			<div class="modal-content">
 				<!-- Modal Header -->
 				<div class="modal-header">
-					<button type="button" class="close" 
+                    <button type="button" class="close" 
 					   data-dismiss="modal">
 						   <span aria-hidden="true">&times;</span>
 						   <span class="sr-only">Close</span>
@@ -41,5 +53,5 @@
 	</div>
 	<div id="listSection">
 	</div>
-    <script src="Scripts/list.js"></script>
+    <script src="../Scripts/list.js"></script>
 </asp:Content>
