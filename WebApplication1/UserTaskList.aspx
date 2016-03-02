@@ -5,10 +5,6 @@
 	    <h3 class="text-muted">Manage Lists</h3>
 	</div>
 	
-    <!-- Button trigger modal -->
-	<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModalNorm">
-		+ Add a List
-	</button>
 	<p>
         <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" HorizontalAlign="Center" AllowSorting="True">
             <Columns>
@@ -22,8 +18,10 @@
         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand="SELECT [task], [priority], [progress], [end] FROM [d498c91f-2784-4943-b30c-a0db86dfe897]"></asp:SqlDataSource>
     </p>
 
-    <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
-    <asp:Button ID="submitButton" runat="server" OnClick="submitButton_Click" Text="Button" />
+    <!-- Button trigger modal -->
+	<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModalNorm">
+		+ Add a List
+	</button>
 
     <!-- Modal -->
 	<div class="modal fade" id="myModalNorm" tabindex="-1" role="dialog" 
@@ -45,11 +43,10 @@
 				<div class="modal-body">
 					<form role="form">
 					  <div class="form-group">
-						  <input type="text" class="form-control"
-						  id="listTitle" placeholder="Enter New List Title Here"/>
+						  <asp:TextBox ID="taskTitle" runat="server" class="form-control" />
 					  </div>
-					  <button type="button" onclick="addList()" class="btn btn-default">Create</button>
-					</form>
+					  <asp:Button ID="Button1" runat="server" OnClick="submitButton_Click" Text="Button" class="btn btn-default" />
+                    </form>
 				</div>
 			</div>
 		</div>

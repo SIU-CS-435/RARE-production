@@ -21,13 +21,13 @@ namespace WebApplication1
         protected void submitButton_Click(object sender, EventArgs e)
         {
             // Retrieves info from textboxes
-            string insertCommand = "Insert into [dbo].[" + curUser + "] ([task], [priority], [progress], [end]) Values('TestTask3', '0', '1', '50');";
+            string insertCommand = "Insert into [dbo].[" + curUser + "] ([task], [priority], [progress], [end]) Values('" + taskTitle.Text + "', '0', '1', '50');";
 
             SqlDataSource1.InsertCommand = insertCommand;
 
             // Upon successful insertion
-            if (SqlDataSource1.Insert() == 1)
-                Label1.Text += "<br /> Your task has been added! <br />";
+            SqlDataSource1.Insert();
+            //    Label1.Text += "<br /> Your task has been added! <br />";
         }
     }
 }
