@@ -184,3 +184,4 @@ UpgradeLog*.htm
 FakesAssemblies/
 /App_Data/SearchIndex/KalikoCMS/write.lock
 
+.vs/config/applicationhost.config
