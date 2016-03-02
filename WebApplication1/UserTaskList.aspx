@@ -1,6 +1,6 @@
-﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="TaskList.aspx.cs" Inherits="WebApplication1.TaskList" EnableEventValidation="false" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="UserTaskList.aspx.cs" Inherits="WebApplication1.WebForm2" EnableEventValidation="false" %>
 
-<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="masthead">
 	    <h3 class="text-muted">Manage Lists</h3>
 	</div>
@@ -21,6 +21,9 @@
         </asp:GridView>
         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand="SELECT [task], [priority], [progress], [end] FROM [d498c91f-2784-4943-b30c-a0db86dfe897]"></asp:SqlDataSource>
     </p>
+
+    <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+    <asp:Button ID="submitButton" runat="server" OnClick="submitButton_Click" Text="Button" />
 
     <!-- Modal -->
 	<div class="modal fade" id="myModalNorm" tabindex="-1" role="dialog" 
@@ -53,5 +56,5 @@
 	</div>
 	<div id="listSection">
 	</div>
-    <script src="../Scripts/list.js"></script>
+    <script src="Scripts/list.js"></script>
 </asp:Content>
