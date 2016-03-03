@@ -31,10 +31,9 @@ namespace WebApplication1.Account
                 var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
                 var signinManager = Context.GetOwinContext().GetUserManager<ApplicationSignInManager>();
 
-                // This doen't count login failures towards account lockout
-                // To enable password failures to trigger lockout, change to shouldLockout: true
+                // This doesn't count login failures towards account lockout
+                // To disable password failures to trigger lockout, change to shouldLockout: true
                 var result = signinManager.PasswordSignIn(Email.Text, Password.Text, RememberMe.Checked, shouldLockout: false);
-
                 switch (result)
                 {
                     case SignInStatus.Success:
@@ -51,9 +50,29 @@ namespace WebApplication1.Account
                         break;
                     case SignInStatus.Failure:
                     default:
-                        FailureText.Text = "Invalid login attempt";
-                        ErrorMessage.Visible = true;
-                        break;
+                       FailureText.Text = "Login failure";
+                       ErrorMessage.Visible = true;
+                       break;
+                }
+            }
+        }
+        protected void Login1_LoginError(object sender, EventArgs e)
+        {
+            if (Session["time"] == null)
+            {
+                int time = 1;
+                Session["time"] = time;
+                Response.Write("Wrong times: 1");
+            }
+            else
+            {
+                int time = (int)Session["time"];
+
+                Session["time"] = time + 1;
+                Response.Write("Wrong times: " + time.ToString());
+                if (time >= 3)
+                {
+                   Response.Redirect("/Account/Lockout");
                 }
             }
         }
