@@ -17,6 +17,21 @@ namespace WebApplication1
 
         }
 
+        /*
+        
+    private void Form_Load() {
+
+if (Time.Now <= "11:30 AM")
+MsgBox ("Good Morning Your****Here!") ;
+
+else if (Time.Now > "11:30 AM" And Time.Now < "5:00 PM") 
+MsgBox ("Good Afternoon Your****Here!")
+if (Time.Now > "5:00 PM" ) 
+MsgBox ("Good Evening Your****Here!") 
+else if (Time.Now >= "12:01 AM")
+MsgBox ("Good Morning Your****Here!")
+*/
+
         //Not Yet Implemented
         protected void submitButton_Click(object sender, EventArgs e)
         {
@@ -31,7 +46,7 @@ namespace WebApplication1
             //  if (DateTime.Compare(curTemp < DateTime.Now) 
             // return "date error";
 
-            //    #808080; #ff8080; #ff2020
+            
             
                 if ((priority.Text).Equals("Low", StringComparison.OrdinalIgnoreCase))
                     priTemp = 0;
