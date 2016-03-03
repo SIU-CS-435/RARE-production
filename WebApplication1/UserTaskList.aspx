@@ -20,8 +20,7 @@
 
     <!-- Button trigger modal -->
 	<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModalNorm">
-		+ Add a List
-	</button>
+		+ Add a Task</button>
 
     <!-- Modal -->
 	<div class="modal fade" id="myModalNorm" tabindex="-1" role="dialog" 
@@ -44,7 +43,10 @@
 					<form role="form">
 					  <div class="form-group">
 						  <p>Title:</p><asp:TextBox ID="taskTitle" runat="server" class="form-control" />
-						  <p>Priority:</p><asp:TextBox ID="priority" runat="server" class="form-control" />
+						  <p>Priority:</p><asp:DropDownList ID="priority" runat="server" class="btn btn-primary dropdown-toggle">
+                                <asp:ListItem>Low</asp:ListItem>
+                                <asp:ListItem>Normal</asp:ListItem>
+                                <asp:ListItem>High</asp:ListItem></asp:DropDownList>
 						  <p>Current Progress:</p><asp:TextBox ID="curProg" runat="server" class="form-control" />
 						  <p>End Progress:</p><asp:TextBox ID="endProg" runat="server" class="form-control" />
 					  </div>

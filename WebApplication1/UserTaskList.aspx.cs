@@ -23,9 +23,16 @@ namespace WebApplication1
             int priTemp,
                 curTemp,
                 endTemp;
-            System.Int32.TryParse(priority.Text, out priTemp); 
+            //System.Int32.TryParse(priority.Text, out priTemp); 
             System.Int32.TryParse(curProg.Text, out curTemp);
             System.Int32.TryParse(endProg.Text, out endTemp);
+
+            if ((priority.Text).Equals("Low", StringComparison.OrdinalIgnoreCase))
+                priTemp = 0;
+            else if (((priority.Text).Equals("Normal", StringComparison.OrdinalIgnoreCase)))
+                priTemp = 1;
+            else
+                priTemp = 2;
 
             // Retrieves info from textboxes
             string insertCommand = "Insert into [dbo].[" + curUser + "] ([task], [priority], [progress], [end]) Values('" + taskTitle.Text + "', " + priTemp + ", " + curTemp + ", " + endTemp + ");";
