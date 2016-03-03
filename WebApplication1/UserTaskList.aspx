@@ -13,7 +13,7 @@
                 <asp:BoundField DataField="progress" HeaderText="Progress" SortExpression="progress" />
                 <asp:BoundField DataField="end" HeaderText="End" SortExpression="end" />
             </Columns>
-            <HeaderStyle BackColor="#666666" />
+            <HeaderStyle BackColor="#000000" />
         </asp:GridView>
         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand="SELECT [task], [priority], [progress], [end] FROM [d498c91f-2784-4943-b30c-a0db86dfe897]"></asp:SqlDataSource>
     </p>
@@ -43,9 +43,12 @@
 				<div class="modal-body">
 					<form role="form">
 					  <div class="form-group">
-						  <asp:TextBox ID="taskTitle" runat="server" class="form-control" />
+						  <p>Title:</p><asp:TextBox ID="taskTitle" runat="server" class="form-control" />
+						  <p>Priority:</p><asp:TextBox ID="priority" runat="server" class="form-control" />
+						  <p>Current Progress:</p><asp:TextBox ID="curProg" runat="server" class="form-control" />
+						  <p>End Progress:</p><asp:TextBox ID="endProg" runat="server" class="form-control" />
 					  </div>
-					  <asp:Button ID="Button1" runat="server" OnClick="submitButton_Click" Text="Button" class="btn btn-default" />
+					  <asp:Button ID="Button1" runat="server" OnClick="submitButton_Click" Text="Submit" class="btn btn-default" />
                     </form>
 				</div>
 			</div>

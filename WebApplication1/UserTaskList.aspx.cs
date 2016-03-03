@@ -20,8 +20,15 @@ namespace WebApplication1
         //Not Yet Implemented
         protected void submitButton_Click(object sender, EventArgs e)
         {
+            int priTemp,
+                curTemp,
+                endTemp;
+            System.Int32.TryParse(priority.Text, out priTemp); 
+            System.Int32.TryParse(curProg.Text, out curTemp);
+            System.Int32.TryParse(endProg.Text, out endTemp);
+
             // Retrieves info from textboxes
-            string insertCommand = "Insert into [dbo].[" + curUser + "] ([task], [priority], [progress], [end]) Values('" + taskTitle.Text + "', '0', '1', '50');";
+            string insertCommand = "Insert into [dbo].[" + curUser + "] ([task], [priority], [progress], [end]) Values('" + taskTitle.Text + "', " + priTemp + ", " + curTemp + ", " + endTemp + ");";
 
             SqlDataSource1.InsertCommand = insertCommand;
 
