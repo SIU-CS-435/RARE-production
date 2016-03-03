@@ -27,13 +27,20 @@ namespace WebApplication1
             System.Int32.TryParse(curProg.Text, out curTemp);
             System.Int32.TryParse(endProg.Text, out endTemp);
 
-            if ((priority.Text).Equals("Low", StringComparison.OrdinalIgnoreCase))
-                priTemp = 0;
-            else if (((priority.Text).Equals("Normal", StringComparison.OrdinalIgnoreCase)))
-                priTemp = 1;
-            else
-                priTemp = 2;
+            //    DateTime dt = DateTime.Now;
+            //  if (DateTime.Compare(curTemp < DateTime.Now) 
+            // return "date error";
 
+            //    #808080; #ff8080; #ff2020
+            
+                if ((priority.Text).Equals("Low", StringComparison.OrdinalIgnoreCase))
+                    priTemp = 0;
+              //  priority.BackColor = System.Drawing.Color.FromArgb(0xFF, 0xe8, 0xe8);
+            else if (((priority.Text).Equals("Normal", StringComparison.OrdinalIgnoreCase)))
+                    priTemp = 1;
+                else
+                    priTemp = 2;
+            
             // Retrieves info from textboxes
             string insertCommand = "Insert into [dbo].[" + curUser + "] ([task], [priority], [progress], [end]) Values('" + taskTitle.Text + "', " + priTemp + ", " + curTemp + ", " + endTemp + ");";
 
