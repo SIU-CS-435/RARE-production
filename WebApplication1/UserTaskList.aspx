@@ -47,6 +47,15 @@
                                 <asp:ListItem>Low</asp:ListItem>
                                 <asp:ListItem>Normal</asp:ListItem>
                                 <asp:ListItem>High</asp:ListItem></asp:DropDownList>
+                          <div> <button type = "button" class="btn btn-default" aria-label="Left Align">
+                            <span class="glyphicon glyphicon-flag" aria-hidden="true"></span></button>
+                              <button type = "button" class="btn btn-default" aria-label="Left Align">
+                               <span class="glyphicon glyphicon-flag" aria-hidden="true"></span></button>
+                               <button type = "button" class="btn btn-default" aria-label="Left Align">
+                                  <span class="glyphicon glyphicon-flag" aria-hidden="true"></span></button>
+                               <button type = "button" class="btn btn-default" aria-label="Left Align">
+                                   <span class="glyphicon glyphicon-flag" aria-hidden="true"></span></button>
+</button> </div>
 						  <p>Current Progress:</p><asp:TextBox ID="curProg" runat="server" class="form-control" />
 						  <p>End Progress:</p><asp:TextBox ID="endProg" runat="server" class="form-control" />
 					  </div>

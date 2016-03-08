@@ -16,38 +16,20 @@ namespace WebApplication1
         {
 
         }
-
-        /*
         
-    private void Form_Load() {
-
-if (Time.Now <= "11:30 AM")
-MsgBox ("Good Morning Your****Here!") ;
-
-else if (Time.Now > "11:30 AM" And Time.Now < "5:00 PM") 
-MsgBox ("Good Afternoon Your****Here!")
-if (Time.Now > "5:00 PM" ) 
-MsgBox ("Good Evening Your****Here!") 
-else if (Time.Now >= "12:01 AM")
-MsgBox ("Good Morning Your****Here!")
-*/
-
         //Not Yet Implemented
         protected void submitButton_Click(object sender, EventArgs e)
         {
             int priTemp,
                 curTemp,
                 endTemp;
-            //System.Int32.TryParse(priority.Text, out priTemp); 
+           
             System.Int32.TryParse(curProg.Text, out curTemp);
             System.Int32.TryParse(endProg.Text, out endTemp);
-
-            //    DateTime dt = DateTime.Now;
-            //  if (DateTime.Compare(curTemp < DateTime.Now) 
-            // return "date error";
-
             
             
+
+
                 if ((priority.Text).Equals("Low", StringComparison.OrdinalIgnoreCase))
                     priTemp = 0;
               //  priority.BackColor = System.Drawing.Color.FromArgb(0xFF, 0xe8, 0xe8);
