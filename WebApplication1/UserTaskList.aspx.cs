@@ -41,6 +41,8 @@ namespace WebApplication1
             // Retrieves info from textboxes
             string insertCommand = "Insert into [dbo].[" + curUser + "] ([task], [priority], [progress], [end]) Values('" + taskTitle.Text + "', " + priTemp + ", " + curTemp + ", " + endTemp + ");";
 
+            // SELECT DATEDIFF(day, CURDATE() , endTemp ) AS DiffDate
+
             SqlDataSource1.InsertCommand = insertCommand;
 
             // Upon successful insertion
