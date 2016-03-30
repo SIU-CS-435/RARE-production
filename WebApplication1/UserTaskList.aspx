@@ -12,6 +12,8 @@
                 <asp:BoundField DataField="priority" HeaderText="Priority" SortExpression="priority" />
                 <asp:BoundField DataField="progress" HeaderText="Progress" SortExpression="progress" />
                 <asp:BoundField DataField="end" HeaderText="End" SortExpression="end" />
+                <asp:CommandField ShowEditButton="True" />
+                <asp:CommandField ShowDeleteButton="True" />
             </Columns>
             <HeaderStyle BackColor="#000000" />
         </asp:GridView>
