@@ -11,7 +11,9 @@
 	<p>
         <asp:GridView ID="GridView1" CssClass="footable" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" HorizontalAlign="Center" AllowSorting="True" DataKeyNames="Id" OnRowDataBound="taskProgressColor">
             <Columns>
-                <asp:BoundField DataField="task" HeaderText="Task" SortExpression="task" />
+                <asp:BoundField DataField="task" HeaderText="Task" SortExpression="task" >
+                <ControlStyle CssClass="form-control input-sm" />
+                </asp:BoundField>
                 <asp:TemplateField HeaderText="Priority" SortExpression="priority">
                     <EditItemTemplate>
                         <asp:DropDownList ID="DropDownList1" runat="server" CssClass="form-control" SelectedValue='<%# Bind("priority") %>'>
@@ -24,9 +26,18 @@
                         <asp:Label ID="Label1" runat="server" Text='<%# Bind("priority") %>'></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
-                <asp:BoundField DataField="progress" HeaderText="Progress" SortExpression="progress" />
-                <asp:BoundField DataField="end" HeaderText="End" SortExpression="end" />
-                <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
+                <asp:BoundField DataField="progress" HeaderText="Progress" SortExpression="progress" >
+                <ControlStyle CssClass="form-control input-sm" />
+                </asp:BoundField>
+                <asp:BoundField DataField="end" HeaderText="End" SortExpression="end" >
+                <ControlStyle CssClass="form-control input-sm" />
+                </asp:BoundField>
+                <asp:BoundField DataField="deadline" HeaderText="Deadline" SortExpression="deadline" >
+                <ControlStyle CssClass="form-control input-sm" />
+                </asp:BoundField>
+                <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" >
+                <ControlStyle CssClass="btn btn-primary btn-sm" />
+                </asp:CommandField>
             </Columns>
         </asp:GridView>
         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Table]" ConflictDetection="CompareAllValues" DeleteCommand="DELETE FROM [Table] WHERE [Id] = @original_Id AND [task] = @original_task AND (([priority] = @original_priority) OR ([priority] IS NULL AND @original_priority IS NULL)) AND (([progress] = @original_progress) OR ([progress] IS NULL AND @original_progress IS NULL)) AND (([end] = @original_end) OR ([end] IS NULL AND @original_end IS NULL)) AND (([userID] = @original_userID) OR ([userID] IS NULL AND @original_userID IS NULL))" InsertCommand="INSERT INTO [Table] ([task], [priority], [progress], [end], [userID]) VALUES (@task, @priority, @progress, @end, @userID)" OldValuesParameterFormatString="original_{0}" UpdateCommand="UPDATE [Table] SET [task] = @task, [priority] = @priority, [progress] = @progress, [end] = @end, [userID] = @userID WHERE [Id] = @original_Id AND [task] = @original_task AND (([priority] = @original_priority) OR ([priority] IS NULL AND @original_priority IS NULL)) AND (([progress] = @original_progress) OR ([progress] IS NULL AND @original_progress IS NULL)) AND (([end] = @original_end) OR ([end] IS NULL AND @original_end IS NULL)) AND (([userID] = @original_userID) OR ([userID] IS NULL AND @original_userID IS NULL))">
