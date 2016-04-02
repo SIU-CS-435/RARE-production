@@ -16,7 +16,39 @@ namespace WebApplication1
         {
 
         }
-        
+
+        protected void taskProgressColor(object sender, GridViewRowEventArgs e)
+        {
+
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+
+                int quantity = 0;
+                if (Int32.TryParse(e.Row.Cells[2].Text, out quantity))
+                {
+                    quantity = int.Parse(e.Row.Cells[2].Text);
+                }
+                //int quantity = int.Parse(e.Row.Cells[2].Text);
+
+                foreach (TableCell cell in e.Row.Cells)
+                {
+                    if (quantity == 1)
+                    {
+                        cell.BackColor = System.Drawing.Color.Red;
+                    }
+                    if (quantity == 2)
+                    {
+                        cell.BackColor = System.Drawing.Color.Blue;
+                    }
+                    if (quantity == 3)
+                    {
+                        cell.BackColor = System.Drawing.Color.Green;
+                    }
+                }
+                
+            }
+        }
+
         //Not Yet Implemented
         protected void submitButton_Click(object sender, EventArgs e)
         {

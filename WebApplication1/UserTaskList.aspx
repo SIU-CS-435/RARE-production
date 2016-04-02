@@ -9,7 +9,7 @@
 	</div>
 	
 	<p>
-        <asp:GridView ID="GridView1" CssClass="footable" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" HorizontalAlign="Center" AllowSorting="True" DataKeyNames="Id">
+        <asp:GridView ID="GridView1" CssClass="footable" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" HorizontalAlign="Center" AllowSorting="True" DataKeyNames="Id" OnRowDataBound="taskProgressColor">
             <Columns>
                 <asp:BoundField DataField="task" HeaderText="Task" SortExpression="task" />
                 <asp:BoundField DataField="priority" HeaderText="Priority" SortExpression="priority" />
