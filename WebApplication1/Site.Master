@@ -11,6 +11,7 @@
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:PlaceHolder>
+
     <webopt:bundlereference runat="server" path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 
@@ -28,6 +29,8 @@
     <link href="css/bootstrap.min.css" rel="stylesheet" />
     <link href="css/ie10-viewport-bug-workaround.css" rel="stylesheet" />
     <link href="justified-nav.css" rel="stylesheet" />
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
 </head>
 <body>
     <form runat="server">
