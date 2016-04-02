@@ -9,8 +9,8 @@ namespace WebApplication1
 {
     public partial class WebForm2 : System.Web.UI.Page
     {
-        private string curUser = "d498c91f-2784-4943-b30c-a0db86dfe897";
-        private string deleteCommand = "DELETE FROM [dbo].[  curUser  ] WHERE";   //Not Yet Implemented
+        private string curUser = "Table";
+        private string deleteCommand = "DELETE FROM [dbo].[Table] WHERE";   //Not Yet Implemented
 
         protected void Page_Load(object sender, EventArgs e)
         {
