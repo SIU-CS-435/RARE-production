@@ -67,6 +67,15 @@ namespace WebApplication1 {
         protected global::System.Web.UI.WebControls.TextBox endProg;
         
         /// <summary>
+        /// daysLeft control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox daysLeft;
+        
+        /// <summary>
         /// Button1 control.
         /// </summary>
         /// <remarks>

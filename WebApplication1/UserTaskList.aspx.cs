@@ -22,15 +22,17 @@ namespace WebApplication1
         {
             int priTemp,
                 curTemp,
-                endTemp;
+                endTemp,
+                daysTemp;
            
             System.Int32.TryParse(curProg.Text, out curTemp);
             System.Int32.TryParse(endProg.Text, out endTemp);
-            
-            
+            System.Int32.TryParse(daysLeft.Text, out daysTemp);//not added to database yet
 
 
-                if ((priority.Text).Equals("Low", StringComparison.OrdinalIgnoreCase))
+
+
+            if ((priority.Text).Equals("Low", StringComparison.OrdinalIgnoreCase))
                     priTemp = 0;
               //  priority.BackColor = System.Drawing.Color.FromArgb(0xFF, 0xe8, 0xe8);
             else if (((priority.Text).Equals("Normal", StringComparison.OrdinalIgnoreCase)))

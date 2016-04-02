@@ -45,13 +45,14 @@
 					<form role="form">
 					  <div class="form-group">
 						  <p>Title:</p><asp:TextBox ID="taskTitle" runat="server" class="form-control" />
-						  <p>Priority:</p><asp:DropDownList ID="priority" runat="server" class="btn btn-primary dropdown-toggle">
+						  <p><br/>Priority:</p><asp:DropDownList ID="priority" runat="server" class="btn btn-primary dropdown-toggle">
                                 <asp:ListItem>Low</asp:ListItem>
                                 <asp:ListItem>Normal</asp:ListItem>
                                 <asp:ListItem>High</asp:ListItem></asp:DropDownList>
-                        
-						  <p>Current Progress:</p><asp:TextBox ID="curProg" runat="server" class="form-control" />
-						  <p>End Progress:</p><asp:TextBox ID="endProg" runat="server" class="form-control" />
+						  <p><br/>Current Progress:</p><asp:TextBox ID="curProg" runat="server" class="form-control" />
+						  <p><br/>End Progress:</p><asp:TextBox ID="endProg" runat="server" class="form-control" />
+						  <p><br/>Days Left Until Deadline:</p><asp:TextBox ID="daysLeft" runat="server" class="form-control" />
+
 					  </div>
 					  <asp:Button ID="Button1" runat="server" OnClick="submitButton_Click" Text="Submit" class="btn btn-default" />
                     </form>
