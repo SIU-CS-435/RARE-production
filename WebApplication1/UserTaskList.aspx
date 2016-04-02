@@ -12,7 +12,18 @@
         <asp:GridView ID="GridView1" CssClass="footable" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" HorizontalAlign="Center" AllowSorting="True" DataKeyNames="Id" OnRowDataBound="taskProgressColor">
             <Columns>
                 <asp:BoundField DataField="task" HeaderText="Task" SortExpression="task" />
-                <asp:BoundField DataField="priority" HeaderText="Priority" SortExpression="priority" />
+                <asp:TemplateField HeaderText="Priority" SortExpression="priority">
+                    <EditItemTemplate>
+                        <asp:DropDownList ID="DropDownList1" runat="server" CssClass="form-control" SelectedValue='<%# Bind("priority") %>'>
+                            <asp:ListItem Value="0">Low</asp:ListItem>
+                            <asp:ListItem Value="1">Normal</asp:ListItem>
+                            <asp:ListItem Value="2">High</asp:ListItem>
+                        </asp:DropDownList>
+                    </EditItemTemplate>
+                    <ItemTemplate>
+                        <asp:Label ID="Label1" runat="server" Text='<%# Bind("priority") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
                 <asp:BoundField DataField="progress" HeaderText="Progress" SortExpression="progress" />
                 <asp:BoundField DataField="end" HeaderText="End" SortExpression="end" />
                 <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />

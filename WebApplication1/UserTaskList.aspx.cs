@@ -22,12 +22,28 @@ namespace WebApplication1
 
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
+                
+                /*
+                int priority = 0;
+
+                if (Int32.TryParse(e.Row.Cells[1].Text, out priority))
+                    priority = int.Parse(e.Row.Cells[1].Text);
+
+                foreach (TableCell cell in e.Row.Cells)
+                {
+                    if (priority == 0)
+                        e.Row.Cells[1].Text = "Low";
+                    else if (priority == 1)
+                        e.Row.Cells[1].Text = "Normal";
+                    else if (priority == 2)
+                        e.Row.Cells[1].Text = "High";
+                }
+                */
 
                 int quantity = 0;
                 if (Int32.TryParse(e.Row.Cells[2].Text, out quantity))
-                {
                     quantity = int.Parse(e.Row.Cells[2].Text);
-                }
+                
                 //int quantity = int.Parse(e.Row.Cells[2].Text);
 
                 foreach (TableCell cell in e.Row.Cells)
