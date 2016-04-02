@@ -62,5 +62,58 @@
                         </div>
                     </div>
                 </div> 
+    <!-- Register -->
+    <button class= "btn btn-primary btn-lg" data-toggle="modal" data-target="#registerModal">Register</button>
+                <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal">
+                                <span aria-hidden="true">&times;</span>
+                                <span class="sr-only">Close</span>           
+                              </button>
+                              <h4 class="modal-title" id="modalLabel2">
+                                    Register for a new account
+                              </h4>
+                              </div>
+
+                            <!-- Modal Body -->
+                            <div class="modal-body">
+                            <form class="form-horizontal" data-toggle="validator" role="form">
+
+                                <!-- Email -->
+                                <div class="form-group">
+                                <label for="inputEmail" class="col-sm-2 control-label">Email</label>
+                                    <div class="col-sm-10">
+                                    <input type="email" class="form-control" id="registerEmail" data-error="Enter a valid email address" required>  
+                                    </div>
+                                    <div class="help-block with-errors"></div>
+                                </div>
+
+                                <!-- Password -->
+                                <div class="form-group">
+                                <label for="inputPassword" class="col-sm-2 control-label">Password</label>
+                                    <div class="col-sm-10">
+                                    <input type="password" class="form-control" id="registerPassword" required>  
+                                    </div>
+                                </div>  
+            
+                                <!-- Confirm Password -->
+                               <div class="form-group">
+                                <label for="inputPassword" class="col-sm-2 control-label">Confirm Password</label>
+                                    <div class="col-sm-10">
+                                    <input type="password" class="form-control" id="registerPasswordconfirsm" required>  
+                                    </div>
+                                </div> 
+                            </form>
+                
+                          <!-- Button -->
+                          <button type="submit" class="btn">Register</button>
+                          </div>
+                        </div>
+                    </div>
+                </div> 
 
 </asp:Content>

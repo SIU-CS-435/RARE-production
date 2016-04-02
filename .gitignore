@@ -184,3 +184,5 @@ FakesAssemblies/
 /App_Data/SearchIndex/KalikoCMS/write.lock
 
 .vs/
+WebApplication1/Default.aspx
+WebApplication1/Account/OpenAuthProviders.ascx
