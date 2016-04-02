@@ -9,28 +9,18 @@
 	</div>
 	
 	<p>
-        <asp:GridView ID="GridView1" CssClass="footable" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" HorizontalAlign="Center" AllowSorting="True" DataKeyNames="task" CellPadding="4" ForeColor="#333333" GridLines="None">
-            <AlternatingRowStyle BackColor="White" />
+        <asp:GridView ID="GridView1" CssClass="footable" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" HorizontalAlign="Center" AllowSorting="True" DataKeyNames="Id">
             <Columns>
-                <asp:BoundField DataField="task" HeaderText="task" SortExpression="task" ReadOnly="True" />
-                <asp:BoundField DataField="priority" HeaderText="priority" SortExpression="priority" />
-                <asp:BoundField DataField="progress" HeaderText="progress" SortExpression="progress" />
-                <asp:BoundField DataField="end" HeaderText="end" SortExpression="end" />
+                <asp:BoundField DataField="task" HeaderText="Task" SortExpression="task" />
+                <asp:BoundField DataField="priority" HeaderText="Priority" SortExpression="priority" />
+                <asp:BoundField DataField="progress" HeaderText="Progress" SortExpression="progress" />
+                <asp:BoundField DataField="end" HeaderText="End" SortExpression="end" />
                 <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
             </Columns>
-            <EditRowStyle BackColor="#2461BF" />
-            <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
-            <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
-            <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
-            <RowStyle BackColor="#EFF3FB" />
-            <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
-            <SortedAscendingCellStyle BackColor="#F5F7FB" />
-            <SortedAscendingHeaderStyle BackColor="#6D95E1" />
-            <SortedDescendingCellStyle BackColor="#E9EBEF" />
-            <SortedDescendingHeaderStyle BackColor="#4870BE" />
         </asp:GridView>
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Table]" ConflictDetection="CompareAllValues" DeleteCommand="DELETE FROM [Table] WHERE [task] = @original_task AND (([priority] = @original_priority) OR ([priority] IS NULL AND @original_priority IS NULL)) AND (([progress] = @original_progress) OR ([progress] IS NULL AND @original_progress IS NULL)) AND (([end] = @original_end) OR ([end] IS NULL AND @original_end IS NULL)) AND (([userID] = @original_userID) OR ([userID] IS NULL AND @original_userID IS NULL))" InsertCommand="INSERT INTO [Table] ([task], [priority], [progress], [end], [userID]) VALUES (@task, @priority, @progress, @end, @userID)" OldValuesParameterFormatString="original_{0}" UpdateCommand="UPDATE [Table] SET [priority] = @priority, [progress] = @progress, [end] = @end, [userID] = @userID WHERE [task] = @original_task AND (([priority] = @original_priority) OR ([priority] IS NULL AND @original_priority IS NULL)) AND (([progress] = @original_progress) OR ([progress] IS NULL AND @original_progress IS NULL)) AND (([end] = @original_end) OR ([end] IS NULL AND @original_end IS NULL)) AND (([userID] = @original_userID) OR ([userID] IS NULL AND @original_userID IS NULL))">
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Table]" ConflictDetection="CompareAllValues" DeleteCommand="DELETE FROM [Table] WHERE [Id] = @original_Id AND [task] = @original_task AND (([priority] = @original_priority) OR ([priority] IS NULL AND @original_priority IS NULL)) AND (([progress] = @original_progress) OR ([progress] IS NULL AND @original_progress IS NULL)) AND (([end] = @original_end) OR ([end] IS NULL AND @original_end IS NULL)) AND (([userID] = @original_userID) OR ([userID] IS NULL AND @original_userID IS NULL))" InsertCommand="INSERT INTO [Table] ([task], [priority], [progress], [end], [userID]) VALUES (@task, @priority, @progress, @end, @userID)" OldValuesParameterFormatString="original_{0}" UpdateCommand="UPDATE [Table] SET [task] = @task, [priority] = @priority, [progress] = @progress, [end] = @end, [userID] = @userID WHERE [Id] = @original_Id AND [task] = @original_task AND (([priority] = @original_priority) OR ([priority] IS NULL AND @original_priority IS NULL)) AND (([progress] = @original_progress) OR ([progress] IS NULL AND @original_progress IS NULL)) AND (([end] = @original_end) OR ([end] IS NULL AND @original_end IS NULL)) AND (([userID] = @original_userID) OR ([userID] IS NULL AND @original_userID IS NULL))">
             <DeleteParameters>
+                <asp:Parameter Name="original_Id" Type="Int32" />
                 <asp:Parameter Name="original_task" Type="String" />
                 <asp:Parameter Name="original_priority" Type="Int32" />
                 <asp:Parameter Name="original_progress" Type="Int32" />
@@ -45,10 +35,12 @@
                 <asp:Parameter Name="userID" Type="String" />
             </InsertParameters>
             <UpdateParameters>
+                <asp:Parameter Name="task" Type="String" />
                 <asp:Parameter Name="priority" Type="Int32" />
                 <asp:Parameter Name="progress" Type="Int32" />
                 <asp:Parameter Name="end" Type="Int32" />
                 <asp:Parameter Name="userID" Type="String" />
+                <asp:Parameter Name="original_Id" Type="Int32" />
                 <asp:Parameter Name="original_task" Type="String" />
                 <asp:Parameter Name="original_priority" Type="Int32" />
                 <asp:Parameter Name="original_progress" Type="Int32" />
