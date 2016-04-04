@@ -4,11 +4,17 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Globalization;
 
 namespace WebApplication1
 {
     public partial class WebForm2 : System.Web.UI.Page
     {
+        int integer, value, max;//integer is the integer form of the percent, value is the progress, max is max progress
+        float percent;//percentage of max value
+        string colorHex, hex;//colorHex is strong for full hex value, hex is string for current color
+        System.Drawing.Color color;
+
         private string curUser = "Table";
         private string deleteCommand = "DELETE FROM [dbo].[Table] WHERE";   //Not Yet Implemented
 
@@ -21,8 +27,36 @@ namespace WebApplication1
         {
 
             if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-                
+            {//here
+                Int32.TryParse(e.Row.Cells[2].Text, out value);
+                Int32.TryParse(e.Row.Cells[3].Text, out max);
+
+                percent = (value + 0f) / (max + 0f);
+
+                integer = (int)(510 * percent);
+
+
+                if (percent < .50f)
+                {
+                    hex = (integer).ToString("x2");
+                    colorHex = "ff" + hex + "00";
+                }
+                else if (percent > .50f)
+                {
+                    hex = (510 - integer).ToString("x2");
+                    colorHex = hex + "ff00";
+                }
+                else
+                {
+                    colorHex = "ffff00";
+                }
+
+                //colorHex is now a string of the correct Hex number for the color you need
+                //use ColorHex to change the color of what is needed
+                //may need to make it uppercase, it needed to be lower case in unity by default and
+                //this: hex = (integer).ToString("x2")  returned it as lowercase by default too
+                //here
+
                 /*
                 int priority = 0;
 
@@ -40,26 +74,9 @@ namespace WebApplication1
                 }
                 */
 
-                int quantity = 0;
-                if (Int32.TryParse(e.Row.Cells[2].Text, out quantity))
-                    quantity = int.Parse(e.Row.Cells[2].Text);
-                
-                //int quantity = int.Parse(e.Row.Cells[2].Text);
-
                 foreach (TableCell cell in e.Row.Cells)
                 {
-                    if (quantity == 1)
-                    {
-                        cell.BackColor = System.Drawing.Color.Red;
-                    }
-                    if (quantity == 2)
-                    {
-                        cell.BackColor = System.Drawing.Color.Blue;
-                    }
-                    if (quantity == 3)
-                    {
-                        cell.BackColor = System.Drawing.Color.Green;
-                    }
+                    cell.BackColor = System.Drawing.ColorTranslator.FromHtml("#" + colorHex);
                 }
                 
             }
