@@ -13,7 +13,12 @@ namespace WebApplication1
         int integer, value, max;//integer is the integer form of the percent, value is the progress, max is max progress
         float percent;//percentage of max value
         string colorHex, hex;//colorHex is strong for full hex value, hex is string for current color
-        System.Drawing.Color color;
+
+        string blue = "00";
+        //for blue values, aka color schemes:
+        //  00 = original
+        //  ff = Barbie
+        //  80 = Bacon
 
         private string curUser = "Table";
         private string deleteCommand = "DELETE FROM [dbo].[Table] WHERE";   //Not Yet Implemented
@@ -25,9 +30,15 @@ namespace WebApplication1
 
         protected void taskProgressColor(object sender, GridViewRowEventArgs e)
         {
+            if ((Scheme.Text).Equals("Original", StringComparison.OrdinalIgnoreCase))
+                blue = "00";
+            else if (((Scheme.Text).Equals("Barbie", StringComparison.OrdinalIgnoreCase)))
+                blue = "ff";
+            else
+                blue = "80";
 
             if (e.Row.RowType == DataControlRowType.DataRow)
-            {//here
+            {
                 Int32.TryParse(e.Row.Cells[2].Text, out value);
                 Int32.TryParse(e.Row.Cells[3].Text, out max);
 
@@ -39,40 +50,17 @@ namespace WebApplication1
                 if (percent < .50f)
                 {
                     hex = (integer).ToString("x2");
-                    colorHex = "ff" + hex + "00";
+                    colorHex = "ff" + hex + blue;
                 }
                 else if (percent > .50f)
                 {
                     hex = (510 - integer).ToString("x2");
-                    colorHex = hex + "ff00";
+                    colorHex = hex + "ff" + blue;
                 }
                 else
                 {
-                    colorHex = "ffff00";
+                    colorHex = "ffff" + blue;
                 }
-
-                //colorHex is now a string of the correct Hex number for the color you need
-                //use ColorHex to change the color of what is needed
-                //may need to make it uppercase, it needed to be lower case in unity by default and
-                //this: hex = (integer).ToString("x2")  returned it as lowercase by default too
-                //here
-
-                /*
-                int priority = 0;
-
-                if (Int32.TryParse(e.Row.Cells[1].Text, out priority))
-                    priority = int.Parse(e.Row.Cells[1].Text);
-
-                foreach (TableCell cell in e.Row.Cells)
-                {
-                    if (priority == 0)
-                        e.Row.Cells[1].Text = "Low";
-                    else if (priority == 1)
-                        e.Row.Cells[1].Text = "Normal";
-                    else if (priority == 2)
-                        e.Row.Cells[1].Text = "High";
-                }
-                */
 
                 foreach (TableCell cell in e.Row.Cells)
                 {
@@ -99,7 +87,6 @@ namespace WebApplication1
 
             if ((priority.Text).Equals("Low", StringComparison.OrdinalIgnoreCase))
                     priTemp = 0;
-              //  priority.BackColor = System.Drawing.Color.FromArgb(0xFF, 0xe8, 0xe8);
             else if (((priority.Text).Equals("Normal", StringComparison.OrdinalIgnoreCase)))
                     priTemp = 1;
                 else

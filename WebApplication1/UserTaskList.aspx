@@ -75,6 +75,10 @@
     <!-- Button trigger modal -->
 	<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModalNorm">
 		+ Add a Task</button>
+    <asp:DropDownList ID="Scheme" runat="server" class="btn btn-primary dropdown-toggle" onchange="javascript:__doPostBack('ctl00$MainContent$GridView1','Cancel$0')">
+        <asp:ListItem>Original</asp:ListItem>
+        <asp:ListItem>Barbie</asp:ListItem>
+        <asp:ListItem>Bacon</asp:ListItem></asp:DropDownList>
 
     <!-- Modal -->
 	<div class="modal fade" id="myModalNorm" tabindex="-1" role="dialog" 
