@@ -78,7 +78,9 @@
                             </form>
                 
                           <!-- Button -->
-                          <button type="submit" class="btn">Sign in</button>
+                        <div class="form group">
+                            <asp:Button runat="server" OnClick="LogIn" Text="Log in" CssClass="btn btn-default" />
+                        </div>
                           </div>
                         </div>
                     </div>
