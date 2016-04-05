@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity.Owin;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,5 +14,18 @@ namespace WebApplication1
         {
 
         }
+        protected void btnSubmit_Click(object sender, EventArgs args)
+        {
+            if (Page.IsValid)
+            {
+                lblResult.Text = "You Got It!";
+                lblResult.ForeColor = System.Drawing.Color.Green;
+            }
+            else {
+                lblResult.Text = "Incorrect";
+                lblResult.ForeColor = System.Drawing.Color.Blue;
+            }
+        }
+
     }
 }
