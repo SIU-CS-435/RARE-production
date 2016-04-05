@@ -14,8 +14,8 @@ namespace WebApplication1.Account
         {
             RegisterHyperLink.NavigateUrl = "Register";
             // Enable this once you have account confirmation enabled for password reset functionality
-            //ForgotPasswordHyperLink.NavigateUrl = "Forgot";
-            OpenAuthLogin.ReturnUrl = Request.QueryString["ReturnUrl"];
+            // ForgotPasswordHyperLink.NavigateUrl = "Forgot";
+            // OpenAuthLogin.ReturnUrl = Request.QueryString["ReturnUrl"];
             var returnUrl = HttpUtility.UrlEncode(Request.QueryString["ReturnUrl"]);
             if (!String.IsNullOrEmpty(returnUrl))
             {
@@ -25,36 +25,42 @@ namespace WebApplication1.Account
 
         protected void LogIn(object sender, EventArgs e)
         {
-            if (IsValid)
-            {
-                // Validate the user password
-                var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
-                var signinManager = Context.GetOwinContext().GetUserManager<ApplicationSignInManager>();
+            //    if (IsValid)
+            //    {
+            // Validate the user password
+            var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            var signinManager = Context.GetOwinContext().GetUserManager<ApplicationSignInManager>();
 
-                // This doesn't count login failures towards account lockout
-                // To disable password failures to trigger lockout, change to shouldLockout: true
-                var result = signinManager.PasswordSignIn(Email.Text, Password.Text, RememberMe.Checked, shouldLockout: false);
-                switch (result)
-                {
-                    case SignInStatus.Success:
+            // To disable password failures to trigger lockout, change to shouldLockout: true
+            var result = signinManager.PasswordSignIn(Email.Text, Password.Text, RememberMe.Checked, shouldLockout: true);
+            switch (result)
+            {
+                case SignInStatus.Success:
+                    if (Page.IsValid)
+                    {
                         IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
                         break;
-                    case SignInStatus.LockedOut:
-                        Response.Redirect("/Account/Lockout");
-                        break;
-                    case SignInStatus.RequiresVerification:
-                        Response.Redirect(String.Format("/Account/TwoFactorAuthenticationSignIn?ReturnUrl={0}&RememberMe={1}", 
-                                                        Request.QueryString["ReturnUrl"],
-                                                        RememberMe.Checked),
-                                          true);
-                        break;
-                    case SignInStatus.Failure:
-                    default:
-                       FailureText.Text = "Login failure";
-                       ErrorMessage.Visible = true;
-                       break;
-                }
+                    }
+                    FailureText.Text = "Captcha failure";
+                    ErrorMessage.Visible = true;
+                    break;
+                case SignInStatus.LockedOut:
+                    recaptcha.Visible = true;
+                    break;
+                case SignInStatus.RequiresVerification:
+                    Response.Redirect(String.Format("/Account/TwoFactorAuthenticationSignIn?ReturnUrl={0}&RememberMe={1}",
+                                                    Request.QueryString["ReturnUrl"],
+                                                    RememberMe.Checked),
+                                      true);
+                    break;
+                case SignInStatus.Failure:
+                default:
+                    FailureText.Text = "Login failure";
+                    ErrorMessage.Visible = true;
+                    break;
             }
+            //  }
+
         }
         protected void Login1_LoginError(object sender, EventArgs e)
         {
@@ -72,8 +78,20 @@ namespace WebApplication1.Account
                 Response.Write("Wrong times: " + time.ToString());
                 if (time >= 3)
                 {
-                   Response.Redirect("/Account/Lockout");
+                    Response.Redirect("/Account/Lockout");
                 }
+            }
+        }
+        protected void btnSubmit_Click(object sender, EventArgs args)
+        {
+            if (Page.IsValid)
+            {
+                lblResult.Text = "You Got It!";
+                lblResult.ForeColor = System.Drawing.Color.Green;
+            }
+            else {
+                lblResult.Text = "Incorrect";
+                lblResult.ForeColor = System.Drawing.Color.Blue;
             }
         }
     }
