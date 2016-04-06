@@ -83,30 +83,57 @@ namespace WebApplication1
         }
 
         //Not Yet Implemented
+
+        
         protected void submitButton_Click(object sender, EventArgs e)
         {
             int priTemp,
                 curTemp,
                 endTemp,
-                daysTemp;
-           
+            daysTemp;
+
             System.Int32.TryParse(curProg.Text, out curTemp);
             System.Int32.TryParse(endProg.Text, out endTemp);
-            System.Int32.TryParse(daysLeft.Text, out daysTemp);//not added to database yet
+            System.Int32.TryParse(TextBox1.Text, out daysTemp);//not added to database yet
 
 
 
 
             if ((priority.Text).Equals("Low", StringComparison.OrdinalIgnoreCase))
-                    priTemp = 0;
-              //  priority.BackColor = System.Drawing.Color.FromArgb(0xFF, 0xe8, 0xe8);
+                priTemp = 0;
+            //  priority.BackColor = System.Drawing.Color.FromArgb(0xFF, 0xe8, 0xe8);
             else if (((priority.Text).Equals("Normal", StringComparison.OrdinalIgnoreCase)))
-                    priTemp = 1;
-                else
-                    priTemp = 2;
-            
-            // Retrieves info from textboxes
-            string insertCommand = "Insert into [dbo].[" + curUser + "] ([task], [priority], [progress], [end]) Values('" + taskTitle.Text + "', " + priTemp + ", " + curTemp + ", " + endTemp + ");";
+                priTemp = 1;
+            else
+                priTemp = 2;
+
+
+            protected void Button1_Click(object sender, EventArgs e)
+        {
+            Calendar1.Visible = true;
+        }
+
+        protected void Calendar1_SelectionChanged(object sender, EventArgs e)
+        {
+            TextBox1.Text = Calendar1.SelectedDate.ToString();
+            Calendar1.Visible = false;
+
+        }
+
+        /* calculate days for deadline
+
+        DateTime userdate = Calendar1.SelectedDate;
+        DateTime today = DateTime.Now;
+        TimeSpan difference = userdate - today ;
+       int daysTemp = difference.TotalDays;
+        //or//
+       int num= (Calendar1.SelectedDate - StartDate).TotalDays
+   
+        */
+
+
+        // Retrieves info from textboxes
+        string insertCommand = "Insert into [dbo].[" + curUser + "] ([task], [priority], [progress], [end]) Values('" + taskTitle.Text + "', " + priTemp + ", " + curTemp + ", " + endTemp + ");";
 
             // SELECT DATEDIFF(day, CURDATE() , endTemp ) AS DiffDate
 
@@ -115,6 +142,8 @@ namespace WebApplication1
             // Upon successful insertion
             SqlDataSource1.Insert();
             //    Label1.Text += "<br /> Your task has been added! <br />";
-        }
+}
+
+        
     }
 }
