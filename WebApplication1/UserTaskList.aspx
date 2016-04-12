@@ -35,6 +35,9 @@
                 <asp:BoundField DataField="deadline" HeaderText="Deadline" SortExpression="deadline" >
                 <ControlStyle CssClass="form-control input-sm" />
                 </asp:BoundField>
+ <asp:BoundField DataField="repeat" HeaderText="Repeat" SortExpression="repeat" >
+                <ControlStyle CssClass="form-control input-sm" />
+                </asp:BoundField>
                 <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" >
                 <ControlStyle CssClass="btn btn-primary btn-sm" />
                 </asp:CommandField>
@@ -47,6 +50,7 @@
                 <asp:Parameter Name="original_priority" Type="Int32" />
                 <asp:Parameter Name="original_progress" Type="Int32" />
                 <asp:Parameter Name="original_end" Type="Int32" />
+ <asp:Parameter Name="original_repeat" Type="String" />
                 <asp:Parameter Name="original_userID" Type="String" />
             </DeleteParameters>
             <InsertParameters>
@@ -54,6 +58,7 @@
                 <asp:Parameter Name="priority" Type="Int32" />
                 <asp:Parameter Name="progress" Type="Int32" />
                 <asp:Parameter Name="end" Type="Int32" />
+ <asp:Parameter Name="repeat" Type="String" />
                 <asp:Parameter Name="userID" Type="String" />
             </InsertParameters>
             <UpdateParameters>
@@ -61,12 +66,14 @@
                 <asp:Parameter Name="priority" Type="Int32" />
                 <asp:Parameter Name="progress" Type="Int32" />
                 <asp:Parameter Name="end" Type="Int32" />
+ <asp:Parameter Name="repeat" Type="String" />
                 <asp:Parameter Name="userID" Type="String" />
                 <asp:Parameter Name="original_Id" Type="Int32" />
                 <asp:Parameter Name="original_task" Type="String" />
                 <asp:Parameter Name="original_priority" Type="Int32" />
                 <asp:Parameter Name="original_progress" Type="Int32" />
                 <asp:Parameter Name="original_end" Type="Int32" />
+<asp:Parameter Name="original_repeat" Type="String" />
                 <asp:Parameter Name="original_userID" Type="String" />
             </UpdateParameters>
         </asp:SqlDataSource>
