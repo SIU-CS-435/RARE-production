@@ -13,12 +13,7 @@ namespace WebApplication1
         int integer, value, max;//integer is the integer form of the percent, value is the progress, max is max progress
         float percent;//percentage of max value
         string colorHex, hex;//colorHex is strong for full hex value, hex is string for current color
-
-        string blue = "00";
-        //for blue values, aka color schemes:
-        //  00 = original
-        //  ff = Barbie
-        //  80 = Bacon
+        System.Drawing.Color color;
 
         private string curUser = "Table";
         private string deleteCommand = "DELETE FROM [dbo].[Table] WHERE";   //Not Yet Implemented
@@ -30,15 +25,9 @@ namespace WebApplication1
 
         protected void taskProgressColor(object sender, GridViewRowEventArgs e)
         {
-            if ((Scheme.Text).Equals("Original", StringComparison.OrdinalIgnoreCase))
-                blue = "00";
-            else if (((Scheme.Text).Equals("Barbie", StringComparison.OrdinalIgnoreCase)))
-                blue = "ff";
-            else
-                blue = "80";
 
             if (e.Row.RowType == DataControlRowType.DataRow)
-            {
+            {//here
                 Int32.TryParse(e.Row.Cells[2].Text, out value);
                 Int32.TryParse(e.Row.Cells[3].Text, out max);
 
@@ -50,17 +39,40 @@ namespace WebApplication1
                 if (percent < .50f)
                 {
                     hex = (integer).ToString("x2");
-                    colorHex = "ff" + hex + blue;
+                    colorHex = "ff" + hex + "00";
                 }
                 else if (percent > .50f)
                 {
                     hex = (510 - integer).ToString("x2");
-                    colorHex = hex + "ff" + blue;
+                    colorHex = hex + "ff00";
                 }
                 else
                 {
-                    colorHex = "ffff" + blue;
+                    colorHex = "ffff00";
                 }
+
+                //colorHex is now a string of the correct Hex number for the color you need
+                //use ColorHex to change the color of what is needed
+                //may need to make it uppercase, it needed to be lower case in unity by default and
+                //this: hex = (integer).ToString("x2")  returned it as lowercase by default too
+                //here
+
+                /*
+                int priority = 0;
+
+                if (Int32.TryParse(e.Row.Cells[1].Text, out priority))
+                    priority = int.Parse(e.Row.Cells[1].Text);
+
+                foreach (TableCell cell in e.Row.Cells)
+                {
+                    if (priority == 0)
+                        e.Row.Cells[1].Text = "Low";
+                    else if (priority == 1)
+                        e.Row.Cells[1].Text = "Normal";
+                    else if (priority == 2)
+                        e.Row.Cells[1].Text = "High";
+                }
+                */
 
                 foreach (TableCell cell in e.Row.Cells)
                 {
@@ -71,29 +83,59 @@ namespace WebApplication1
         }
 
         //Not Yet Implemented
+
+        protected void repeatButton_Click(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                string insertCommand = "Insert into [dbo].[" + curUser + "] ([task], [priority], [progress], [end], [deadline]) Values('" + e.Row.Cells[0].Text + "', " + e.Row.Cells[1].Text + ", " + e.Row.Cells[2].Text + ", " + e.Row.Cells[3].Text + ", " + e.Row.Cells[4].Text + ");";
+            }
+        }
+
+        protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
         protected void submitButton_Click(object sender, EventArgs e)
         {
             int priTemp,
                 curTemp,
                 endTemp,
-                daysTemp;
-           
+            daysTemp;
+
             System.Int32.TryParse(curProg.Text, out curTemp);
             System.Int32.TryParse(endProg.Text, out endTemp);
-            System.Int32.TryParse(daysLeft.Text, out daysTemp);//not added to database yet
+            System.Int32.TryParse(TextBox1.Text, out daysTemp);//not added to database yet
 
 
 
 
             if ((priority.Text).Equals("Low", StringComparison.OrdinalIgnoreCase))
-                    priTemp = 0;
+                priTemp = 0;
+            //  priority.BackColor = System.Drawing.Color.FromArgb(0xFF, 0xe8, 0xe8);
             else if (((priority.Text).Equals("Normal", StringComparison.OrdinalIgnoreCase)))
-                    priTemp = 1;
-                else
-                    priTemp = 2;
-            
-            // Retrieves info from textboxes
-            string insertCommand = "Insert into [dbo].[" + curUser + "] ([task], [priority], [progress], [end]) Values('" + taskTitle.Text + "', " + priTemp + ", " + curTemp + ", " + endTemp + ");";
+                priTemp = 1;
+            else
+                priTemp = 2;
+
+
+           
+
+        /* calculate days for deadline
+
+        DateTime userdate = Calendar1.SelectedDate;
+        DateTime today = DateTime.Now;
+        TimeSpan difference = userdate - today ;
+       int daysTemp = difference.TotalDays;
+        //or//
+       int num= (Calendar1.SelectedDate - StartDate).TotalDays
+   
+        */
+
+
+        // Retrieves info from textboxes
+        string insertCommand = "Insert into [dbo].[" + curUser + "] ([task], [priority], [progress], [end]) Values('" + taskTitle.Text + "', " + priTemp + ", " + curTemp + ", " + endTemp + ");";
 
             // SELECT DATEDIFF(day, CURDATE() , endTemp ) AS DiffDate
 
@@ -102,6 +144,15 @@ namespace WebApplication1
             // Upon successful insertion
             SqlDataSource1.Insert();
             //    Label1.Text += "<br /> Your task has been added! <br />";
+}
+
+       
+
+        protected void Calendar1_SelectionChanged(object sender, EventArgs e)
+        {
+            TextBox1.Text = Calendar1.SelectedDate.ToString();
+            
+
         }
     }
 }
