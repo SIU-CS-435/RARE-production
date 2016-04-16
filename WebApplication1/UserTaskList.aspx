@@ -23,6 +23,7 @@
                         <asp:Label ID="Label1" runat="server" Text='<%# Bind("priority") %>'></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
+                
                 <asp:BoundField DataField="progress" HeaderText="Progress" SortExpression="progress" >
                 <ControlStyle CssClass="form-control input-sm" />
                 </asp:BoundField>
@@ -38,7 +39,7 @@
                  <asp:TemplateField HeaderText="Repeat" SortExpression="repeat">
                      
                      <ItemTemplate>
-                            <asp:Button ID="repeatButton" Text="Repeat" CssClass="form-control" runat="server" OnClick="repeatButton_Click" />     
+                            <asp:Button ID="repeatButton" Text="Repeat"  CssClass="footable" runat="server" OnClick="repeatButton_Click" />     
                   </ItemTemplate>
                      </asp:TemplateField>
                 <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" >
