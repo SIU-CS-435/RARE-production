@@ -9,7 +9,7 @@
 	</div>
 	
 	<p>
-        <asp:GridView ID="GridView1" CssClass="footable" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" HorizontalAlign="Center" AllowSorting="True" DataKeyNames="Id" OnRowDataBound="taskProgressColor" OnSelectedIndexChanged="GridView1_SelectedIndexChanged">
+        <asp:GridView ID="GridView1" CssClass="footable" runat="server" AutoGenerateColumns="False" OnSorting="GridView1_Sorting" OnRowCreated="repeatButton_Click" DataSourceID="SqlDataSource1" HorizontalAlign="Center" AllowSorting="True" DataKeyNames="Id" OnRowDataBound="taskProgressColor" OnSelectedIndexChanged="GridView1_SelectedIndexChanged">
             <Columns>
                 <asp:TemplateField HeaderText="Priority" SortExpression="priority">
                     <EditItemTemplate>
@@ -37,9 +37,8 @@
                 <ControlStyle CssClass="form-control input-sm" />
                 </asp:BoundField>
                  <asp:TemplateField HeaderText="Repeat" SortExpression="repeat">
-                     
-                     <ItemTemplate>
-                            <asp:Button ID="repeatButton" Text="Repeat"  CssClass="footable" runat="server" OnClick="repeatButton_Click" />     
+                          <ItemTemplate>
+                            <asp:Button ID="repeatButton" Text="Repeat"  CssClass="form-control" runat="server" OnClick="repeatButton_Click" />     
                   </ItemTemplate>
                      </asp:TemplateField>
                 <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" >

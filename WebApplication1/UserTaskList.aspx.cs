@@ -19,6 +19,7 @@ namespace WebApplication1
         //  00 = original
         //  ff = Barbie
         //  80 = Bacon
+        
 
         private string curUser = "Table";
         private string deleteCommand = "DELETE FROM [dbo].[Table] WHERE";   //Not Yet Implemented
@@ -34,6 +35,9 @@ namespace WebApplication1
                 string insertCommand = "Insert into [dbo].[" + curUser + "] ([task], [priority], [progress], [end], [deadline]) Values('" + e.Row.Cells[0].Text + "', " + e.Row.Cells[1].Text + ", " + e.Row.Cells[2].Text + ", " + e.Row.Cells[3].Text + ", " + e.Row.Cells[4].Text + ");";
             }
         }
+
+        
+        
 
         /*
         protected void grd_RowCommand(object sender, GridViewCommandEventArgs e)
