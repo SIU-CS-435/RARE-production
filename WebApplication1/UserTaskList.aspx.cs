@@ -22,10 +22,13 @@ namespace WebApplication1
 
         private string curUser = "Table";
         private string deleteCommand = "DELETE FROM [dbo].[Table] WHERE";   //Not Yet Implemented
+        public string userid = HttpContext.Current.User.Identity.Name;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            //DataBind();
+            SqlDataSource1.UpdateParameters["userID"].DefaultValue = userid;
+            SqlDataSource1.SelectParameters["userID"].DefaultValue = userid;
         }
 
         protected void taskProgressColor(object sender, GridViewRowEventArgs e)
@@ -93,7 +96,7 @@ namespace WebApplication1
                     priTemp = 2;
             
             // Retrieves info from textboxes
-            string insertCommand = "Insert into [dbo].[" + curUser + "] ([task], [priority], [progress], [end]) Values('" + taskTitle.Text + "', " + priTemp + ", " + curTemp + ", " + endTemp + ");";
+            string insertCommand = "Insert into [dbo].[Table] ([task], [priority], [progress], [end], [deadline], [userID]) Values('" + taskTitle.Text + "', " + priTemp + ", " + curTemp + ", " + endTemp + ", '" + daysLeft.Text + "', '" + userid + "');";
 
             // SELECT DATEDIFF(day, CURDATE() , endTemp ) AS DiffDate
 
