@@ -14,6 +14,7 @@ namespace WebApplication1
         {
 
         }
+        /*
         protected void LogIn(object sender, EventArgs e)
         {
             //    if (IsValid)
@@ -65,6 +66,6 @@ namespace WebApplication1
                 lblResult.ForeColor = System.Drawing.Color.Blue;
             }
         }
-
-    }
+*/
+    } 
 }
