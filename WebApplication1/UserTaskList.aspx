@@ -47,34 +47,39 @@
                 
             </Columns>
         </asp:GridView>
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand="SELECT * FROM [Table]" ConflictDetection="CompareAllValues" DeleteCommand="DELETE FROM [Table] WHERE [Id] = @original_Id AND [task] = @original_task AND (([priority] = @original_priority) OR ([priority] IS NULL AND @original_priority IS NULL)) AND (([progress] = @original_progress) OR ([progress] IS NULL AND @original_progress IS NULL)) AND (([end] = @original_end) OR ([end] IS NULL AND @original_end IS NULL)) AND (([userID] = @original_userID) OR ([userID] IS NULL AND @original_userID IS NULL))" InsertCommand="INSERT INTO [Table] ([task], [priority], [progress], [end], [userID]) VALUES (@task, @priority, @progress, @end, @userID)" OldValuesParameterFormatString="original_{0}" UpdateCommand="UPDATE [Table] SET [task] = @task, [priority] = @priority, [progress] = @progress, [end] = @end, [userID] = @userID WHERE [Id] = @original_Id AND [task] = @original_task AND (([priority] = @original_priority) OR ([priority] IS NULL AND @original_priority IS NULL)) AND (([progress] = @original_progress) OR ([progress] IS NULL AND @original_progress IS NULL)) AND (([end] = @original_end) OR ([end] IS NULL AND @original_end IS NULL)) AND (([userID] = @original_userID) OR ([userID] IS NULL AND @original_userID IS NULL))">
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
+            ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" 
+            SelectCommand="SELECT * FROM [Table] WHERE ([userID] = @userID)" 
+            DeleteCommand="DELETE FROM [Table] WHERE [Id] = @original_Id" 
+            OldValuesParameterFormatString="original_{0}" 
+            UpdateCommand="UPDATE [Table] SET [task] = @task, [priority] = @priority, [progress] = @progress, [end] = @end, [deadline] = @deadline, [userID] = @userID WHERE [Id] = @original_Id" 
+            InsertCommand="INSERT INTO [Table] ([task], [priority], [progress], [end], [deadline], [userID]) VALUES (@task, @priority, @progress, @end, @deadline, @userID)">
             <DeleteParameters>
                 <asp:Parameter Name="original_Id" Type="Int32" />
-                <asp:Parameter Name="original_task" Type="String" />
-                <asp:Parameter Name="original_priority" Type="Int32" />
-                <asp:Parameter Name="original_progress" Type="Int32" />
-                <asp:Parameter Name="original_end" Type="Int32" />
-                <asp:Parameter Name="original_userID" Type="String" />
             </DeleteParameters>
             <InsertParameters>
                 <asp:Parameter Name="task" Type="String" />
-                <asp:Parameter Name="priority" Type="Int32" />
+                <asp:Parameter Name="priority" Type="String" />
                 <asp:Parameter Name="progress" Type="Int32" />
                 <asp:Parameter Name="end" Type="Int32" />
+                <asp:Parameter Name="deadline" Type="String" />
                 <asp:Parameter Name="userID" Type="String" />
+                <asp:Parameter Name="listName" Type="String" />
             </InsertParameters>
+            <SelectParameters>
+	            <asp:Parameter Name="userID" Type="String" DefaultValue="Anonymous" />
+            </SelectParameters>
             <UpdateParameters>
                 <asp:Parameter Name="task" Type="String" />
                 <asp:Parameter Name="priority" Type="Int32" />
                 <asp:Parameter Name="progress" Type="Int32" />
                 <asp:Parameter Name="end" Type="Int32" />
-                <asp:Parameter Name="userID" Type="String" />
-                <asp:Parameter Name="original_Id" Type="Int32" />
+                <asp:Parameter Name="userID" Type="String" DefaultValue="Anonymous" />
+                <asp:Parameter Name="listName" Type="String" />
                 <asp:Parameter Name="original_task" Type="String" />
                 <asp:Parameter Name="original_priority" Type="Int32" />
                 <asp:Parameter Name="original_progress" Type="Int32" />
-                <asp:Parameter Name="original_end" Type="Int32" />
-                <asp:Parameter Name="original_userID" Type="String" />
+                <asp:Parameter Name="original_Id" Type="Int32" />
             </UpdateParameters>
         </asp:SqlDataSource>
     </p>
