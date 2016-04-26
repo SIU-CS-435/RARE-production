@@ -9,8 +9,11 @@
 	</div>
 	
 	<p>
-        <asp:GridView ID="GridView1" CssClass="footable" runat="server" AutoGenerateColumns="False" OnSorting="GridView1_Sorting" OnRowCreated="repeatButton_Click" DataSourceID="SqlDataSource1" HorizontalAlign="Center" AllowSorting="True" DataKeyNames="Id" OnRowDataBound="taskProgressColor" OnSelectedIndexChanged="GridView1_SelectedIndexChanged">
+        <asp:GridView ID="GridView1" CssClass="footable" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" HorizontalAlign="Center" AllowSorting="True" DataKeyNames="Id" OnRowDataBound="getRowValues" OnRowCommand="repeatButton_Click">
             <Columns>
+                <asp:BoundField DataField="task" HeaderText="Task" SortExpression="task" >
+                <ControlStyle CssClass="form-control input-sm" />
+                </asp:BoundField>
                 <asp:TemplateField HeaderText="Priority" SortExpression="priority">
                     <EditItemTemplate>
                         <asp:DropDownList ID="DropDownList1" runat="server" CssClass="form-control" SelectedValue='<%# Bind("priority") %>'>
@@ -27,23 +30,26 @@
                 <asp:BoundField DataField="progress" HeaderText="Progress" SortExpression="progress" >
                 <ControlStyle CssClass="form-control input-sm" />
                 </asp:BoundField>
-                <asp:BoundField DataField="task" HeaderText="Task" SortExpression="task" >
-                <ControlStyle CssClass="form-control input-sm" />
-                </asp:BoundField>
                 <asp:BoundField DataField="end" HeaderText="End" SortExpression="end" >
                 <ControlStyle CssClass="form-control input-sm" />
                 </asp:BoundField>
                 <asp:BoundField DataField="deadline" HeaderText="Deadline" SortExpression="deadline" >
                 <ControlStyle CssClass="form-control input-sm" />
                 </asp:BoundField>
-                 <asp:TemplateField HeaderText="Repeat" SortExpression="repeat">
-                          <ItemTemplate>
-                            <asp:Button ID="repeatButton" Text="Repeat"  CssClass="form-control" runat="server" OnClick="repeatButton_Click" />     
-                  </ItemTemplate>
-                     </asp:TemplateField>
-                <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" >
+                
+                <asp:CommandField ShowDeleteButton="True" ShowEditButton="True">
                 <ControlStyle CssClass="btn btn-primary btn-sm" />
                 </asp:CommandField>
+                
+                <asp:TemplateField>
+                <ItemTemplate>                
+                  <asp:Button runat="server" ID="repeatButton"
+                    Text="Repeat"
+                    CommandName="repeatCommand"
+                    CommandArgument="<%# ((GridViewRow) Container).RowIndex %>" 
+                    CssClass="btn btn-primary btn-sm"/>
+                </ItemTemplate>
+              </asp:TemplateField>
                 
             </Columns>
         </asp:GridView>
@@ -53,7 +59,7 @@
             DeleteCommand="DELETE FROM [Table] WHERE [Id] = @original_Id" 
             OldValuesParameterFormatString="original_{0}" 
             UpdateCommand="UPDATE [Table] SET [task] = @task, [priority] = @priority, [progress] = @progress, [end] = @end, [deadline] = @deadline, [userID] = @userID WHERE [Id] = @original_Id" 
-            InsertCommand="INSERT INTO [Table] ([task], [priority], [progress], [end], [deadline], [userID]) VALUES (@task, @priority, @progress, @end, @deadline, @userID)">
+            InsertCommand="INSERT INTO [Table] ([task], [priority], [progress], [end], [deadline], [userID]) Values (@task, @priority, @rowProgress, @end, @deadline, @userID)"> 
             <DeleteParameters>
                 <asp:Parameter Name="original_Id" Type="Int32" />
             </DeleteParameters>
@@ -87,7 +93,12 @@
     <!-- Button trigger modal -->
 	<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModalNorm">
 		+ Add a Task</button>
+    <asp:DropDownList ID="Scheme" runat="server" class="btn btn-primary dropdown-toggle" onchange="javascript:__doPostBack('ctl00$MainContent$GridView1','Cancel$0')">
+        <asp:ListItem>Original</asp:ListItem>
+        <asp:ListItem>Barbie</asp:ListItem>
+        <asp:ListItem>Bacon</asp:ListItem></asp:DropDownList>
 
+   
     <!-- Modal -->
 	<div class="modal fade" id="myModalNorm" tabindex="-1" role="dialog" 
 		 aria-labelledby="myModalLabel" aria-hidden="true">
@@ -115,13 +126,13 @@
                                 <asp:ListItem>High</asp:ListItem></asp:DropDownList>
 						  <p><br/>Current Progress:</p><asp:TextBox ID="curProg" runat="server" class="form-control" />
 						  <p><br/>End Progress:</p><asp:TextBox ID="endProg" runat="server" class="form-control" />
-						  <p><br/>Days Left Until Deadline:</p>
+						  <p><br/>Days Left Until Deadline:</p><asp:TextBox ID="daysLeft" runat="server" class="form-control" />
 					  </div>
   <div>
     
         <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
        
-        <asp:Calendar ID="Calendar1" runat="server" BackColor="White" BorderColor="#999999" CellPadding="4" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="8pt" ForeColor="Black" Height="180px" OnSelectionChanged="Calendar1_SelectionChanged" Visible="True" Width="200px">
+        <asp:Calendar ID="Calendar1" runat="server" BackColor="White" BorderColor="#999999" CellPadding="4" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="8pt" ForeColor="Black" Height="180px" Visible="True" Width="200px">
             <DayHeaderStyle BackColor="#CCCCCC" Font-Bold="True" Font-Size="7pt" />
             <NextPrevStyle VerticalAlign="Bottom" />
             <OtherMonthDayStyle ForeColor="#808080" />
