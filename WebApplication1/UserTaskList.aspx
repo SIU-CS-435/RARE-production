@@ -9,7 +9,7 @@
 	</div>
 	
 	<p>
-        <asp:GridView ID="GridView1" CssClass="footable" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" HorizontalAlign="Center" AllowSorting="True" DataKeyNames="Id" OnRowDataBound="taskProgressColor">
+        <asp:GridView ID="GridView1" CssClass="footable" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" HorizontalAlign="Center" AllowSorting="True" DataKeyNames="Id" OnRowDataBound="getRowValues" OnRowCommand="repeatButton_Click">
             <Columns>
                 <asp:BoundField DataField="task" HeaderText="Task" SortExpression="task" >
                 <ControlStyle CssClass="form-control input-sm" />
@@ -26,6 +26,7 @@
                         <asp:Label ID="Label1" runat="server" Text='<%# Bind("priority") %>'></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
+                
                 <asp:BoundField DataField="progress" HeaderText="Progress" SortExpression="progress" >
                 <ControlStyle CssClass="form-control input-sm" />
                 </asp:BoundField>
@@ -35,9 +36,21 @@
                 <asp:BoundField DataField="deadline" HeaderText="Deadline" SortExpression="deadline" >
                 <ControlStyle CssClass="form-control input-sm" />
                 </asp:BoundField>
-                <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" >
+                
+                <asp:CommandField ShowDeleteButton="True" ShowEditButton="True">
                 <ControlStyle CssClass="btn btn-primary btn-sm" />
                 </asp:CommandField>
+                
+                <asp:TemplateField>
+                <ItemTemplate>                
+                  <asp:Button runat="server" ID="repeatButton"
+                    Text="Repeat"
+                    CommandName="repeatCommand"
+                    CommandArgument="<%# ((GridViewRow) Container).RowIndex %>" 
+                    CssClass="btn btn-primary btn-sm"/>
+                </ItemTemplate>
+              </asp:TemplateField>
+                
             </Columns>
         </asp:GridView>
         <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
@@ -46,7 +59,7 @@
             DeleteCommand="DELETE FROM [Table] WHERE [Id] = @original_Id" 
             OldValuesParameterFormatString="original_{0}" 
             UpdateCommand="UPDATE [Table] SET [task] = @task, [priority] = @priority, [progress] = @progress, [end] = @end, [deadline] = @deadline, [userID] = @userID WHERE [Id] = @original_Id" 
-            InsertCommand="INSERT INTO [Table] ([task], [priority], [progress], [end], [deadline], [userID]) VALUES (@task, @priority, @progress, @end, @deadline, @userID)">
+            InsertCommand="INSERT INTO [Table] ([task], [priority], [progress], [end], [deadline], [userID]) Values (@task, @priority, @rowProgress, @end, @deadline, @userID)"> 
             <DeleteParameters>
                 <asp:Parameter Name="original_Id" Type="Int32" />
             </DeleteParameters>
@@ -85,6 +98,7 @@
         <asp:ListItem>Barbie</asp:ListItem>
         <asp:ListItem>Bacon</asp:ListItem></asp:DropDownList>
 
+   
     <!-- Modal -->
 	<div class="modal fade" id="myModalNorm" tabindex="-1" role="dialog" 
 		 aria-labelledby="myModalLabel" aria-hidden="true">
@@ -113,8 +127,23 @@
 						  <p><br/>Current Progress:</p><asp:TextBox ID="curProg" runat="server" class="form-control" />
 						  <p><br/>End Progress:</p><asp:TextBox ID="endProg" runat="server" class="form-control" />
 						  <p><br/>Days Left Until Deadline:</p><asp:TextBox ID="daysLeft" runat="server" class="form-control" />
-
 					  </div>
+  <div>
+    
+        <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+       
+        <asp:Calendar ID="Calendar1" runat="server" BackColor="White" BorderColor="#999999" CellPadding="4" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="8pt" ForeColor="Black" Height="180px" Visible="True" Width="200px">
+            <DayHeaderStyle BackColor="#CCCCCC" Font-Bold="True" Font-Size="7pt" />
+            <NextPrevStyle VerticalAlign="Bottom" />
+            <OtherMonthDayStyle ForeColor="#808080" />
+            <SelectedDayStyle BackColor="#666666" Font-Bold="True" ForeColor="White" />
+            <SelectorStyle BackColor="#CCCCCC" />
+            <TitleStyle BackColor="#999999" BorderColor="Black" Font-Bold="True" />
+            <TodayDayStyle BackColor="#CCCCCC" ForeColor="Black" />
+            <WeekendDayStyle BackColor="#FFFFCC" />
+        </asp:Calendar>
+    
+    </div>
 					  <asp:Button ID="Button1" runat="server" OnClick="submitButton_Click" Text="Submit" class="btn btn-default" />
                     </form>
 				</div>
