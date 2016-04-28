@@ -65,7 +65,6 @@ namespace WebApplication1
 
             integer = (int)(510 * percent);
 
-
             if (percent < .50f)
             {
                 hex = (integer).ToString("x2");
@@ -76,9 +75,13 @@ namespace WebApplication1
                 hex = (510 - integer).ToString("x2");
                 colorHex = hex + "ff" + blue;
             }
-            else
+            else if(percent == .50f)
             {
                 colorHex = "ffff" + blue;
+            }
+            else
+            {
+                colorHex = "99D9EA";
             }
         }
 
