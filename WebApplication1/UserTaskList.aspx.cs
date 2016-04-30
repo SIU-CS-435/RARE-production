@@ -12,23 +12,80 @@ namespace WebApplication1
     {
         int integer, value, max;//integer is the integer form of the percent, value is the progress, max is max progress
         float percent;//percentage of max value
-        string colorHex, hex;//colorHex is strong for full hex value, hex is string for current color
-
+        string colorHex, hex; //colorHex is strong for full hex value, hex is string for current color
         string blue = "00";
         //for blue values, aka color schemes:
         //  00 = original
         //  ff = Barbie
         //  80 = Bacon
+        
+        // Get currently logged in user
+        public string userid = HttpContext.Current.User.Identity.Name;
+        public string rowTask, rowProgress, rowEnd, rowDeadline;
+        public int rowPriority;
 
-        private string curUser = "Table";
-        private string deleteCommand = "DELETE FROM [dbo].[Table] WHERE";   //Not Yet Implemented
+        private void SQLInsert(string rowTask, int rowPriority, string rowProgress, string rowEnd, string rowDeadline)
+        {
+            SqlDataSource1.InsertCommand = "Insert into [dbo].[Table] ([task], [priority], [progress], [end], [deadline], [userID]) Values('" + rowTask + "', " + rowPriority + ", " + rowProgress + ", " + rowEnd + ", '" + rowDeadline + "', '" + userid + "');";
+            SqlDataSource1.Insert();
+        }
+
+        protected void repeatButton_Click(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "repeatCommand") {
+                int index = Convert.ToInt32(e.CommandArgument);
+   
+                GridViewRow row = GridView1.Rows[index];
+
+                // Get current row's attributes to duplicate with an insert()
+                // Prioirty is within a Label, must be parsed
+                Label rowPriorityLabel = (Label)row.FindControl("Label1");
+                Int32.TryParse(rowPriorityLabel.Text, out rowPriority);
+
+                SQLInsert(row.Cells[0].Text, rowPriority, row.Cells[2].Text, row.Cells[3].Text, row.Cells[4].Text);
+            }
+        }
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            SqlDataSource1.UpdateParameters["userID"].DefaultValue = userid;
+            SqlDataSource1.SelectParameters["userID"].DefaultValue = userid;
+           
+            // GridView insert command currently unused 
+            SqlDataSource1.InsertParameters["userID"].DefaultValue = userid;
+            
         }
 
-        protected void taskProgressColor(object sender, GridViewRowEventArgs e)
+        private void taskProgressColor(String rowProgress, String rowEnd)
+        {
+            Int32.TryParse(rowProgress, out value);
+            Int32.TryParse(rowEnd, out max);
+
+            percent = (value + 0f) / (max + 0f);
+
+            integer = (int)(510 * percent);
+
+            if (percent < .50f)
+            {
+                hex = (integer).ToString("x2");
+                colorHex = "ff" + hex + blue;
+            }
+            else if (percent > .50f)
+            {
+                hex = (510 - integer).ToString("x2");
+                colorHex = hex + "ff" + blue;
+            }
+            else if(percent == .50f)
+            {
+                colorHex = "ffff" + blue;
+            }
+            else
+            {
+                colorHex = "99D9EA";
+            }
+        }
+
+        protected void getRowValues(object sender, GridViewRowEventArgs e)
         {
             if ((Scheme.Text).Equals("Original", StringComparison.OrdinalIgnoreCase))
                 blue = "00";
@@ -39,28 +96,10 @@ namespace WebApplication1
 
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                Int32.TryParse(e.Row.Cells[2].Text, out value);
-                Int32.TryParse(e.Row.Cells[3].Text, out max);
+                rowProgress = e.Row.Cells[2].Text;
+                rowEnd = e.Row.Cells[3].Text;
 
-                percent = (value + 0f) / (max + 0f);
-
-                integer = (int)(510 * percent);
-
-
-                if (percent < .50f)
-                {
-                    hex = (integer).ToString("x2");
-                    colorHex = "ff" + hex + blue;
-                }
-                else if (percent > .50f)
-                {
-                    hex = (510 - integer).ToString("x2");
-                    colorHex = hex + "ff" + blue;
-                }
-                else
-                {
-                    colorHex = "ffff" + blue;
-                }
+                taskProgressColor(rowProgress, rowEnd);
 
                 foreach (TableCell cell in e.Row.Cells)
                 {
@@ -70,38 +109,19 @@ namespace WebApplication1
             }
         }
 
-        //Not Yet Implemented
+        private int resolvePriority()
+        {
+            if ((priority.Text).Equals("Low", StringComparison.OrdinalIgnoreCase))
+                return 0;
+            else if (((priority.Text).Equals("Normal", StringComparison.OrdinalIgnoreCase)))
+                return 1;
+            else
+                return 2;
+        }
+
         protected void submitButton_Click(object sender, EventArgs e)
         {
-            int priTemp,
-                curTemp,
-                endTemp,
-                daysTemp;
-           
-            System.Int32.TryParse(curProg.Text, out curTemp);
-            System.Int32.TryParse(endProg.Text, out endTemp);
-            System.Int32.TryParse(daysLeft.Text, out daysTemp);//not added to database yet
-
-
-
-
-            if ((priority.Text).Equals("Low", StringComparison.OrdinalIgnoreCase))
-                    priTemp = 0;
-            else if (((priority.Text).Equals("Normal", StringComparison.OrdinalIgnoreCase)))
-                    priTemp = 1;
-                else
-                    priTemp = 2;
-            
-            // Retrieves info from textboxes
-            string insertCommand = "Insert into [dbo].[" + curUser + "] ([task], [priority], [progress], [end]) Values('" + taskTitle.Text + "', " + priTemp + ", " + curTemp + ", " + endTemp + ");";
-
-            // SELECT DATEDIFF(day, CURDATE() , endTemp ) AS DiffDate
-
-            SqlDataSource1.InsertCommand = insertCommand;
-
-            // Upon successful insertion
-            SqlDataSource1.Insert();
-            //    Label1.Text += "<br /> Your task has been added! <br />";
+            SQLInsert(taskTitle.Text, resolvePriority(), curProg.Text, endProg.Text, daysLeft.Text);
         }
     }
 }

@@ -8,7 +8,7 @@ using System.Globalization;
 
 namespace WebApplication1
 {
-    public partial class WebForm2 : System.Web.UI.Page
+    public partial class WebForm3 : System.Web.UI.Page
     {
         
     }
