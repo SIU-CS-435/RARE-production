@@ -119,6 +119,11 @@ namespace WebApplication1
                 return 2;
         }
 
+        private void calidate()
+        {
+
+        }
+
         protected void submitButton_Click(object sender, EventArgs e)
         {
             SQLInsert(taskTitle.Text, resolvePriority(), curProg.Text, endProg.Text, daysLeft.Text);
