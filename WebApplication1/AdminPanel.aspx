@@ -9,14 +9,18 @@
 	</div>
 	
 	<p>
-        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="Id" DataSourceID="Users">
+        <asp:GridView ID="GridView1" runat="server"  AutoGenerateColumns="False" DataKeyNames="Id" DataSourceID="Users">
             <Columns>
                 <asp:BoundField DataField="Id" HeaderText="Id" ReadOnly="True" SortExpression="Id" />
                 <asp:BoundField DataField="Email" HeaderText="Email" SortExpression="Email" />
-                <asp:CommandField ShowDeleteButton="True" />
+                <asp:TemplateField ShowHeader="False">
+                    <ItemTemplate>
+                        <asp:LinkButton ID="LinkButton1" runat="server" OnClientClick="return confirm('Are you sure you want to delete?')" CausesValidation="False" CommandName="Delete" Text="Delete"></asp:LinkButton>
+                    </ItemTemplate>
+                </asp:TemplateField>
             </Columns>
         </asp:GridView>
-        <asp:SqlDataSource ID="Users" runat="server" ConflictDetection="CompareAllValues" ConnectionString="Data Source=tcp:taskserv.database.windows.net,1433;Initial Catalog=ToDoTaskList_db;User ID=cs435@taskserv;Password=hello123!;Connect Timeout=30;Encrypt=True;TrustServerCertificate=False" DeleteCommand="DELETE FROM [AspNetUsers] WHERE [Id] = @original_Id AND (([Email] = @original_Email) OR ([Email] IS NULL AND @original_Email IS NULL))" InsertCommand="INSERT INTO [AspNetUsers] ([Id], [Email]) VALUES (@Id, @Email)" OldValuesParameterFormatString="original_{0}" ProviderName="System.Data.SqlClient" SelectCommand="SELECT [Id], [Email] FROM [AspNetUsers]" UpdateCommand="UPDATE [AspNetUsers] SET [Email] = @Email WHERE [Id] = @original_Id AND (([Email] = @original_Email) OR ([Email] IS NULL AND @original_Email IS NULL))">
+        <asp:SqlDataSource ID="Users"  runat="server" ConflictDetection="CompareAllValues" ConnectionString="Data Source=tcp:taskserv.database.windows.net,1433;Initial Catalog=ToDoTaskList_db;User ID=cs435@taskserv;Password=hello123!;Connect Timeout=30;Encrypt=True;TrustServerCertificate=False" DeleteCommand="DELETE FROM [AspNetUsers] WHERE [Id] = @original_Id AND (([Email] = @original_Email) OR ([Email] IS NULL AND @original_Email IS NULL))" InsertCommand="INSERT INTO [AspNetUsers] ([Id], [Email]) VALUES (@Id, @Email)" OldValuesParameterFormatString="original_{0}" ProviderName="System.Data.SqlClient" SelectCommand="SELECT [Id], [Email] FROM [AspNetUsers]" UpdateCommand="UPDATE [AspNetUsers] SET [Email] = @Email WHERE [Id] = @original_Id AND (([Email] = @original_Email) OR ([Email] IS NULL AND @original_Email IS NULL))">
             <DeleteParameters>
                 <asp:Parameter Name="original_Id" Type="String" />
                 <asp:Parameter Name="original_Email" Type="String" />
