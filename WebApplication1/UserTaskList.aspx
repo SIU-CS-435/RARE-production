@@ -119,14 +119,20 @@
 				<div class="modal-body">
 					<form role="form">
 					  <div class="form-group">
-						  <p>Title:</p><asp:TextBox ID="taskTitle" runat="server" class="form-control" />
-						  <p><br/>Priority:</p><asp:DropDownList ID="priority" runat="server" class="btn btn-primary dropdown-toggle">
+						  <p>Title:</p><div class="col-xs-6"><asp:TextBox required ID="taskTitle" runat="server" class="form-control" />
+                          </div><br/>
+						  <p><br/>Priority:</p><div class="col-xs-3"><asp:DropDownList ID="priority" runat="server" class="btn btn-primary dropdown-toggle">
                                 <asp:ListItem>Low</asp:ListItem>
                                 <asp:ListItem>Normal</asp:ListItem>
                                 <asp:ListItem>High</asp:ListItem></asp:DropDownList>
-						  <p><br/>Current Progress:</p><asp:TextBox ID="curProg" runat="server" class="form-control" />
-						  <p><br/>End Progress:</p><asp:TextBox ID="endProg" runat="server" class="form-control" />
-						  <p><br/>Days Left Until Deadline:</p><asp:TextBox ID="daysLeft" runat="server" class="form-control" />
+                          </div><br/>
+						  <p><br/>Current Progress:</p><div class="col-xs-6"><asp:TextBox Type="number" min="0" required ID="curProg" runat="server" class="form-control" />
+                          </div><br/>
+						  <p><br/>End Progress:</p><div class="col-xs-6"><asp:TextBox Type="number" min="1" required onchange="validate()" ID="endProg" runat="server" class="form-control" />
+                          </div>
+                          <br />
+						  <p><br/>Days Left Until Deadline:</p><div class="col-xs-6"><asp:TextBox ID="daysLeft" required runat="server" class="form-control" />
+                          </div><br/>
 					  </div>
   <div>
     
@@ -162,5 +168,13 @@
         $(function () {
             $('[id*=GridView1]').footable();
         });
+    </script>
+    <script type="text/javascript">
+        function validate() {
+            alert("in function");
+            var start = document.getElementById("curProg").value;
+            var end = document.getElementById("endProg").value;
+            alert(start + " " + end);
+        }
     </script>
 </asp:Content>
