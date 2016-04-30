@@ -34,15 +34,17 @@ namespace WebApplication1
         {
             if (e.CommandName == "repeatCommand") {
                 int index = Convert.ToInt32(e.CommandArgument);
-   
                 GridViewRow row = GridView1.Rows[index];
-
-                // Get current row's attributes to duplicate with an insert()
-                // Prioirty is within a Label, must be parsed
                 Label rowPriorityLabel = (Label)row.FindControl("Label1");
-                Int32.TryParse(rowPriorityLabel.Text, out rowPriority);
 
-                SQLInsert(row.Cells[0].Text, rowPriority, row.Cells[2].Text, row.Cells[3].Text, row.Cells[4].Text);
+                // Empty Deadline Bug (Not Resolved)
+                //row.Cells[3].Text.Replace("&nbsp;", "");
+                if (row.Cells[3].Text.Length == 0 || row.Cells[3].Text.Equals("&nbsp;") || row.Cells[3].Text.Equals("") || row.Cells[3].Text.Equals(string.Empty))
+                {
+                    row.Cells[3].Text = string.Empty;
+                }
+
+                SQLInsert(row.Cells[0].Text, resolvePriorityRepeat(rowPriorityLabel), row.Cells[2].Text, row.Cells[3].Text, row.Cells[4].Text);
             }
         }
 
@@ -96,6 +98,11 @@ namespace WebApplication1
 
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
+                Label rowPriorityLabel = (Label)e.Row.FindControl("Label1");
+                int temp = 1;
+                Int32.TryParse(rowPriorityLabel.Text, out temp);
+                rowPriorityLabel.Text = viewPriority(temp);
+
                 rowProgress = e.Row.Cells[2].Text;
                 rowEnd = e.Row.Cells[3].Text;
 
@@ -119,9 +126,29 @@ namespace WebApplication1
                 return 2;
         }
 
-        private void calidate()
+        private int resolvePriorityRepeat(Label label)
         {
+            if ((label.Text).Equals("Low", StringComparison.OrdinalIgnoreCase))
+                return 0;
+            else if (((label.Text).Equals("Normal", StringComparison.OrdinalIgnoreCase)))
+                return 1;
+            else
+                return 2;
+        }
 
+        protected string viewPriority(int i)
+        {
+            switch (i)
+            {
+                case 0:
+                    return "Low";
+                case 1:
+                    return "Normal";
+                case 2:
+                    return "High";
+                default:
+                    return "Normal";
+            }
         }
 
         protected void submitButton_Click(object sender, EventArgs e)

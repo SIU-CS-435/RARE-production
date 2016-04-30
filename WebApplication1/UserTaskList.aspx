@@ -21,6 +21,7 @@
                             <asp:ListItem Value="1">Normal</asp:ListItem>
                             <asp:ListItem Value="2">High</asp:ListItem>
                         </asp:DropDownList>
+                        <asp:Label ID="Label1" runat="server" Visible="False"></asp:Label>
                     </EditItemTemplate>
                     <ItemTemplate>
                         <asp:Label ID="Label1" runat="server" Text='<%# Bind("priority") %>'></asp:Label>
