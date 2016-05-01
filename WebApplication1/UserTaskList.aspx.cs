@@ -56,6 +56,10 @@ namespace WebApplication1
             // GridView insert command currently unused 
             SqlDataSource1.InsertParameters["userID"].DefaultValue = userid;
             
+            // If not logged in, redirect to Login Page
+            if (userid.Equals(""))
+                Response.Redirect("/Account/Login.aspx", true);
+
         }
 
         private void taskProgressColor(String rowProgress, String rowEnd)
