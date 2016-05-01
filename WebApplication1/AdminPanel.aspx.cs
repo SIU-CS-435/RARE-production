@@ -10,9 +10,13 @@ namespace WebApplication1
 {
     public partial class AdminPanel : System.Web.UI.Page
     {
+        public string userid = HttpContext.Current.User.Identity.Name;
+
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            // If not logged in, redirect to Login Page
+            if (userid.Equals(""))
+                Response.Redirect("/Account/Login.aspx", true);
 
         }
         protected void GridView2_RowDeleting(Object sender, GridViewDeleteEventArgs e)
