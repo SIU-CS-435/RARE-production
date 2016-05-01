@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AdminPanel.aspx.cs" Inherits="WebApplication1.WebForm3" EnableEventValidation="false" %>
+﻿<%@Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true"  CodeBehind="AdminPanel.aspx.cs" Inherits="WebApplication1.AdminPanel" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
@@ -9,7 +9,7 @@
 	</div>
 	
 	<p>
-        <asp:GridView ID="GridView1" runat="server"  AutoGenerateColumns="False" DataKeyNames="Id" DataSourceID="Users">
+        <asp:GridView ID="GridView2" runat="server"  AutoGenerateColumns="False" OnRowDeleting="GridView2_RowDeleting" DataKeyNames="Id" DataSourceID="Users">
             <Columns>
                 <asp:BoundField DataField="Id" HeaderText="Id" ReadOnly="True" SortExpression="Id" />
                 <asp:BoundField DataField="Email" HeaderText="Email" SortExpression="Email" />
@@ -44,7 +44,8 @@
     <script src="Scripts/list.js"></script>
     <script type="text/javascript">
         $(function () {
-            $('[id*=GridView1]').footable();
+            $('[id*=GridView2]').footable();
         });
     </script>
 </asp:Content>
+
