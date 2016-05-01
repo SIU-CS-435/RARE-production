@@ -127,16 +127,17 @@
                                 <asp:ListItem>Normal</asp:ListItem>
                                 <asp:ListItem>High</asp:ListItem></asp:DropDownList>
                           </div><br/>
-						  <p><br/>Current Progress:</p><div class="col-xs-6"><asp:TextBox Type="number" min="0" required ID="curProg" runat="server" class="form-control" />
+						  <p><br/>Current Progress:</p><div class="col-xs-6"><asp:TextBox Type="number" min="0" value ="0" required ID="curProg" runat="server" class="form-control" />
                           </div><br/>
-						  <p><br/>End Progress:</p><div class="col-xs-6"><asp:TextBox Type="number" min="1" required onchange="validate()" ID="endProg" runat="server" class="form-control" />
+						  <p><br/>End Progress:</p><div class="col-xs-6"><asp:TextBox Type="number" min="1" value="1" required ID="endProg" runat="server" class="form-control" />
                           </div>
+                              <asp:CompareValidator runat="server" id="cmpNumbers" controltovalidate="curProg" controltocompare="endProg" operator="LessThan" type="Integer" errormessage="End Progress has to be higher than Current Progress" />
                           <br />
 						  <p><br/>Days Left Until Deadline:</p><div class="col-xs-6"><asp:TextBox ID="daysLeft" required runat="server" class="form-control" />
                           </div><br/>
 					  </div>
-  <div>
-    
+<!--calendar, may be taken out -->
+    <div>
         <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
        
         <asp:Calendar ID="Calendar1" runat="server" BackColor="White" BorderColor="#999999" CellPadding="4" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="8pt" ForeColor="Black" Height="180px" Visible="True" Width="200px">
@@ -151,6 +152,7 @@
         </asp:Calendar>
     
     </div>
+<!--end calendar-->
 					  <asp:Button ID="Button1" runat="server" OnClick="submitButton_Click" Text="Submit" class="btn btn-default" />
                     </form>
 				</div>
@@ -169,13 +171,5 @@
         $(function () {
             $('[id*=GridView1]').footable();
         });
-    </script>
-    <script type="text/javascript">
-        function validate() {
-            alert("in function");
-            var start = document.getElementById("curProg").value;
-            var end = document.getElementById("endProg").value;
-            alert(start + " " + end);
-        }
     </script>
 </asp:Content>
