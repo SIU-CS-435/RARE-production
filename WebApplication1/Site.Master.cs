@@ -15,6 +15,7 @@ namespace WebApplication1
         private const string AntiXsrfTokenKey = "__AntiXsrfToken";
         private const string AntiXsrfUserNameKey = "__AntiXsrfUserName";
         private string _antiXsrfTokenValue;
+        public string userid = HttpContext.Current.User.Identity.Name;
 
         protected void Page_Init(object sender, EventArgs e)
         {
@@ -69,6 +70,11 @@ namespace WebApplication1
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (userid.Equals(""))
+            {
+                taskLink.Visible = false;
+                adminLink.Visible = false;
+            }
 
         }
 

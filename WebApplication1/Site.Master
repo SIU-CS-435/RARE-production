@@ -68,10 +68,9 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li><a runat="server" href="~/">Home</a></li>
-                        <li><a runat="server" href="~/About">About</a></li>
                         <li><a runat="server" href="https://github.com/SIU-CS-435/RARE-production">GitHub Repo</a></li>
-                        <li><a runat="server" href="~/UserTaskList">TaskList</a></li>
-                        <li><a runat="server" href="~/AdminPanel">AdminPanel</a></li>
+                        <li><a id="taskLink" runat="server" href="~/UserTaskList">TaskList</a></li>
+                        <li><a id="adminLink" runat="server" href="~/AdminPanel">AdminPanel</a></li>
                     </ul>
                     <asp:LoginView runat="server" ViewStateMode="Disabled">
                         <AnonymousTemplate>
