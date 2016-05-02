@@ -146,14 +146,18 @@ namespace WebApplication1
                 return 2;
         }
 
-
+        public IEnumerable<DateTime> EachDay(DateTime start, DateTime end)
+        {
+            for (var day = start.Date; day.Date <= end.Date; day = day.AddDays(1))
+                yield return day;
+        }
         private void progressbar(String daysLeft)
         {
             DateTime start = DateTime.Now;
             int percent, daysTemp;
             Int32.TryParse(daysLeft, out daysTemp);
             DateTime end = start.AddDays(daysTemp);
-            foreach (var day in start.EachDay(end))
+            foreach (DateTime day in EachDay(start,end))
             { 
                     percent = (100 / daysTemp);
 
