@@ -5,6 +5,10 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Globalization;
+using System.ComponentModel;
+using System.Data;
+
+
 
 namespace WebApplication1
 {
@@ -29,7 +33,7 @@ namespace WebApplication1
             SqlDataSource1.InsertCommand = "Insert into [dbo].[Table] ([task], [priority], [progress], [end], [deadline], [userID]) Values('" + rowTask + "', " + rowPriority + ", " + rowProgress + ", " + rowEnd + ", '" + rowDeadline + "', '" + userid + "');";
             SqlDataSource1.Insert();
         }
-
+        
         protected void repeatButton_Click(object sender, GridViewCommandEventArgs e)
         {
             if (e.CommandName == "repeatCommand") {
@@ -91,6 +95,7 @@ namespace WebApplication1
             }
         }
 
+        
         protected void getRowValues(object sender, GridViewRowEventArgs e)
         {
             if ((Scheme.Text).Equals("Original", StringComparison.OrdinalIgnoreCase))
@@ -140,6 +145,42 @@ namespace WebApplication1
                 return 2;
         }
 
+
+        private void progressbar(object sender, EventArgs e)
+        {
+            int percent;
+            int daysTemp = Convert.ToInt32(daysLeft.Text);
+            DateTime today = DateTime.Now;
+            //  DateTime deadline = Calendar1.SelectedDate;
+            foreach (DateTime day in today)
+            {
+                for (int i = daysTemp; i <= 0; i--)
+                {
+                    percent = (100 / daysTemp);
+                    if (percent <= 40)
+                    {
+                        progress.PB1.Color = "";
+                    }
+                    else if (percent >= 50 && percent <= 80)
+                    {
+                        progress.PB1.Color = "";
+                    }
+                    else
+                    {
+                        progress.PB1.Color = "";
+                    }
+                    Label2.Text = daysTemp + "days remaining";
+                    progress.PB1.Value = percent;
+                    today.AddDays(-1);
+                }
+            }
+        }
+        
+           
+          
+         
+
+      
         protected string viewPriority(int i)
         {
             switch (i)
@@ -159,5 +200,10 @@ namespace WebApplication1
         {
             SQLInsert(taskTitle.Text, resolvePriority(), curProg.Text, endProg.Text, daysLeft.Text);
         }
+    }
+
+    internal class progress
+    {
+
     }
 }

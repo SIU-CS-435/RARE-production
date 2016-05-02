@@ -34,9 +34,25 @@
                 <asp:BoundField DataField="end" HeaderText="End" SortExpression="end" >
                 <ControlStyle CssClass="form-control input-sm" />
                 </asp:BoundField>
-                <asp:BoundField DataField="deadline" HeaderText="Deadline" SortExpression="deadline" >
-                <ControlStyle CssClass="form-control input-sm" />
-                </asp:BoundField>
+                <asp:TemplateField HeaderText="Deadline" runat="server">
+                    <ItemTemplate> 
+  <div class="progress" id="PB1">
+      <EditItemTemplate> 
+  <div class="progress-bar progress-bar-success" style="width: 35%">
+    <span class="sr-only">35% Complete (success)</span>
+  </div>
+  <div class="progress-bar progress-bar-warning progress-bar-striped" style="width: 20%">
+    <span class="sr-only">20% Complete (warning)</span>
+  </div>
+  <div class="progress-bar progress-bar-danger" style="width: 10%">
+    <span class="sr-only">10% Complete (danger)</span>
+  </div>
+          </EditItemTemplate> 
+        <asp:Label ID="Label2" runat="server" Visible="True"></asp:Label>
+</div>
+                       
+                        </ItemTemplate>
+                </asp:TemplateField>
                 
                 <asp:CommandField ShowDeleteButton="True" ShowEditButton="True">
                 <ControlStyle CssClass="btn btn-primary btn-sm" />
