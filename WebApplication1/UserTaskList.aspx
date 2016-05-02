@@ -38,8 +38,8 @@
                     <ItemTemplate> 
   <div class="progress" id="PB1">
       <EditItemTemplate> 
-  <div class="progress-bar progress-bar-success" >
-    <span class="sr-only"></span>
+  <div class="progress-bar progress-bar-success" style="width: 35%">
+    <span class="sr-only">35% Complete (success)</span>
   </div>
   <div class="progress-bar progress-bar-warning progress-bar-striped" style="width: 20%">
     <span class="sr-only">20% Complete (warning)</span>
