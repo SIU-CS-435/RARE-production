@@ -159,7 +159,7 @@ namespace WebApplication1
             DateTime end = start.AddDays(daysTemp);
             foreach (DateTime day in EachDay(start,end))
             { 
-                    percent = (100 / daysTemp);
+                    percent = (daysTemp/100);
 
                 if (percent <= 40)
                     {
@@ -176,6 +176,7 @@ namespace WebApplication1
 
                     progress.PB1.Text = daysTemp + "days remaining";
                     progress.PB1.Value = percent;
+                    daysTemp--;
              }
             
         }
