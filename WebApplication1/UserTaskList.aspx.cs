@@ -156,21 +156,23 @@ namespace WebApplication1
             foreach (var day in start.EachDay(end))
             { 
                     percent = (100 / daysTemp);
-                    if (percent <= 40)
+
+                if (percent <= 40)
                     {
-                        e.progress.PB1.ForeColor = Color.Green;
+                        progress.PB1.ForeColor = Color.Green;
                     }
                     else if (percent >= 50 && percent <= 80)
                     {
-                        progress.PB1.ForeColor = Color.Red;
+                        progress.PB1.ForeColor = Color.Yellow;
                     }
                     else
                     {
-                        progress.PB1.Color = "";
+                    progress.PB1.ForeColor = Color.Red;
                     }
-                    Label2.Text = daysTemp + "days remaining";
+
+                    progress.PB1.Text = daysTemp + "days remaining";
                     progress.PB1.Value = percent;
-                }
+             }
             
         }
         
@@ -202,6 +204,6 @@ namespace WebApplication1
 
     internal class progress
     {
-
+        
     }
 }

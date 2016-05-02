@@ -36,9 +36,9 @@
                 </asp:BoundField>
                 <asp:TemplateField HeaderText="Deadline" runat="server">
                     <ItemTemplate> 
-  <div class="progress" id="PB1" aria-valuetext="Label2" runat="server" aria-valuemax="100" aria-valuemin="0" aria-setsize='<%progressbar%>' aria-valuenow="<%progressbar %>">
+  <div class="progress" id="PB1" aria-valuetext="" runat="server" aria-valuemax="100" aria-valuemin="0" aria-setsize='<%progressbar%>' aria-valuenow="<%progressbar %>">
       
-        <asp:Label ID="Label2" runat="server" Visible="True"></asp:Label>
+        
 </div>
                        
                         </ItemTemplate>
