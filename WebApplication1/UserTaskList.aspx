@@ -133,26 +133,9 @@
                           </div>
                               <asp:CompareValidator runat="server" id="cmpNumbers" controltovalidate="curProg" controltocompare="endProg" operator="LessThan" type="Integer" errormessage="End Progress has to be higher than Current Progress" />
                           <br />
-						  <p><br/>Days Left Until Deadline:</p><div class="col-xs-6"><asp:TextBox ID="daysLeft" required runat="server" class="form-control" />
+						  <p><br/>Deadline:</p><div class="col-xs-6"><asp:TextBox ID="daysLeft" required runat="server" class="form-control" />
                           </div><br/>
-					  </div>
-<!--calendar, may be taken out -->
-    <div>
-        <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
-       
-        <asp:Calendar ID="Calendar1" runat="server" BackColor="White" BorderColor="#999999" CellPadding="4" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="8pt" ForeColor="Black" Height="180px" Visible="True" Width="200px">
-            <DayHeaderStyle BackColor="#CCCCCC" Font-Bold="True" Font-Size="7pt" />
-            <NextPrevStyle VerticalAlign="Bottom" />
-            <OtherMonthDayStyle ForeColor="#808080" />
-            <SelectedDayStyle BackColor="#666666" Font-Bold="True" ForeColor="White" />
-            <SelectorStyle BackColor="#CCCCCC" />
-            <TitleStyle BackColor="#999999" BorderColor="Black" Font-Bold="True" />
-            <TodayDayStyle BackColor="#CCCCCC" ForeColor="Black" />
-            <WeekendDayStyle BackColor="#FFFFCC" />
-        </asp:Calendar>
-    
-    </div>
-<!--end calendar-->
+					  </div><br/>
 					  <asp:Button ID="Button1" runat="server" OnClick="submitButton_Click" Text="Submit" class="btn btn-default" />
                     </form>
 				</div>
