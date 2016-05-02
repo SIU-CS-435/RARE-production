@@ -36,18 +36,8 @@
                 </asp:BoundField>
                 <asp:TemplateField HeaderText="Deadline" runat="server">
                     <ItemTemplate> 
-  <div class="progress" id="PB1">
-      <EditItemTemplate> 
-  <div class="progress-bar progress-bar-success" style="width: 35%">
-    <span class="sr-only">35% Complete (success)</span>
-  </div>
-  <div class="progress-bar progress-bar-warning progress-bar-striped" style="width: 20%">
-    <span class="sr-only">20% Complete (warning)</span>
-  </div>
-  <div class="progress-bar progress-bar-danger" style="width: 10%">
-    <span class="sr-only">10% Complete (danger)</span>
-  </div>
-          </EditItemTemplate> 
+  <div class="progress" id="PB1" aria-valuetext="Label2" runat="server" aria-valuemax="100" aria-valuemin="0" aria-setsize='<%progressbar%>' aria-valuenow="<%progressbar %>">
+      
         <asp:Label ID="Label2" runat="server" Visible="True"></asp:Label>
 </div>
                        

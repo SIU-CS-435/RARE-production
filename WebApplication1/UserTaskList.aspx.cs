@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.Globalization;
 using System.ComponentModel;
 using System.Data;
+using System.Windows;
 
 
 
@@ -146,24 +147,22 @@ namespace WebApplication1
         }
 
 
-        private void progressbar(object sender, EventArgs e)
+        private void progressbar(String daysLeft)
         {
-            int percent;
-            int daysTemp = Convert.ToInt32(daysLeft.Text);
-            DateTime today = DateTime.Now;
-            //  DateTime deadline = Calendar1.SelectedDate;
-            foreach (DateTime day in today)
-            {
-                for (int i = daysTemp; i <= 0; i--)
-                {
+            DateTime start = DateTime.Now;
+            int percent, daysTemp;
+            Int32.TryParse(daysLeft, out daysTemp);
+            DateTime end = start.AddDays(daysTemp);
+            foreach (var day in start.EachDay(end))
+            { 
                     percent = (100 / daysTemp);
                     if (percent <= 40)
                     {
-                        progress.PB1.Color = "";
+                        e.progress.PB1.ForeColor = Color.Green;
                     }
                     else if (percent >= 50 && percent <= 80)
                     {
-                        progress.PB1.Color = "";
+                        progress.PB1.ForeColor = Color.Red;
                     }
                     else
                     {
@@ -171,9 +170,8 @@ namespace WebApplication1
                     }
                     Label2.Text = daysTemp + "days remaining";
                     progress.PB1.Value = percent;
-                    today.AddDays(-1);
                 }
-            }
+            
         }
         
            
