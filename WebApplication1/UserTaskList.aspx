@@ -34,16 +34,19 @@
                 <asp:BoundField DataField="end" HeaderText="End" SortExpression="end" >
                 <ControlStyle CssClass="form-control input-sm" />
                 </asp:BoundField>
-                <asp:TemplateField HeaderText="Deadline" runat="server">
+                <asp:TemplateField HeaderText="Deadline" SortExpression="deadline" runat="server">
                     <ItemTemplate> 
-  <div class="progress" id="PB1" aria-valuetext="" runat="server" aria-valuemax="100" aria-valuemin="0" aria-setsize='<%progressbar%>' aria-valuenow="<%progressbar %>">
-      
-        
-</div>
-                       
-                        </ItemTemplate>
+                        <div class="progress" id="PB1" 
+                            CssClass="form-control" 
+                            aria-valuetext="" 
+                            onload="progressbar"   
+                            aria-valuemax="100" 
+                            aria-valuemin="0" 
+                            aria-valuenow="progressbar">
+                            <div class="progress-bar progress-bar-success" style="width: 35%">
+                        </div>
+                    </ItemTemplate>
                 </asp:TemplateField>
-                
                 <asp:CommandField ShowDeleteButton="True" ShowEditButton="True">
                 <ControlStyle CssClass="btn btn-primary btn-sm" />
                 </asp:CommandField>
