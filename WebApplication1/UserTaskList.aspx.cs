@@ -5,6 +5,11 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Globalization;
+using System.ComponentModel;
+using System.Data;
+using System.Windows;
+
+
 
 namespace WebApplication1
 {
@@ -29,7 +34,7 @@ namespace WebApplication1
             SqlDataSource1.InsertCommand = "Insert into [dbo].[Table] ([task], [priority], [progress], [end], [deadline], [userID]) Values('" + rowTask + "', " + rowPriority + ", " + rowProgress + ", " + rowEnd + ", '" + rowDeadline + "', '" + userid + "');";
             SqlDataSource1.Insert();
         }
-
+        
         protected void repeatButton_Click(object sender, GridViewCommandEventArgs e)
         {
             if (e.CommandName == "repeatCommand") {
@@ -91,6 +96,7 @@ namespace WebApplication1
             }
         }
 
+        
         protected void getRowValues(object sender, GridViewRowEventArgs e)
         {
             if ((Scheme.Text).Equals("Original", StringComparison.OrdinalIgnoreCase))
@@ -140,6 +146,46 @@ namespace WebApplication1
                 return 2;
         }
 
+        public IEnumerable<DateTime> EachDay(DateTime start, DateTime end)
+        {
+            for (var day = start.Date; day.Date <= end.Date; day = day.AddDays(1))
+                yield return day;
+        }
+        private void progressbar(String daysLeft)
+        {
+            DateTime start = DateTime.Now;
+            int percent, daysTemp;
+            Int32.TryParse(daysLeft, out daysTemp);
+            DateTime end = start.AddDays(daysTemp);
+            foreach (DateTime day in EachDay(start,end))
+            { 
+                    percent = (daysTemp/100);
+
+                if (percent <= 40)
+                    {
+                        progress.PB1.ForeColor = Color.Green;
+                    }
+                    else if (percent >= 50 && percent <= 80)
+                    {
+                        progress.PB1.ForeColor = Color.Yellow;
+                    }
+                    else
+                    {
+                    progress.PB1.ForeColor = Color.Red;
+                    }
+
+                    progress.PB1.Text = daysTemp + "days remaining";
+                    progress.PB1.Value = percent;
+                    daysTemp--;
+             }
+            
+        }
+        
+           
+          
+         
+
+      
         protected string viewPriority(int i)
         {
             switch (i)
@@ -159,5 +205,10 @@ namespace WebApplication1
         {
             SQLInsert(taskTitle.Text, resolvePriority(), curProg.Text, endProg.Text, daysLeft.Text);
         }
+    }
+
+    internal class progress
+    {
+        
     }
 }
